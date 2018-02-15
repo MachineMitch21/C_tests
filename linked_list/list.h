@@ -12,6 +12,7 @@ typedef int bool;
 #define INDEX_OUT_OF_RANGE -1
 #define INVALID_POP        -2
 #define EMPTY_LIST_ERROR   -3
+#define NO_ELEMENT_FOUND   -4
 
 typedef struct Node Node;
 
@@ -59,7 +60,9 @@ bool list_is_empty(List* list);
 
 void list_insert(List* list, Node* node, int index);
 
-void list_remove(List* list, int index);
+bool list_remove_i(List* list, int index);
+
+bool list_remove_n(List* list, Node* node);
 
 void free_list(List* list);
 

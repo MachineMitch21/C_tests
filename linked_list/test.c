@@ -90,9 +90,18 @@ int main(int argc, char** argv)
     printf("\nValue 0: %d\n\n", val0);
     printf("Value 1: %d\n\n", val1);
 
-    list_remove(clearTest, 0);
+    Node* testNode = list_get_element(clearTest, 1);
 
-    printf("Clear test has %d elements after removing index 0\n", list_size(clearTest));
+    int testVal = 15;
+    if (list_remove_n(clearTest, node_new(&testVal, sizeof(int))) == false)
+    {
+        printf("List error code: %d\n\n", clearTest->lastError);
+    }
+
+    list_remove_i(clearTest, 0);
+    list_remove_n(clearTest, testNode);
+
+    printf("Clear test has %d elements after removing with remove_i and remove_n\n", list_size(clearTest));
 
     list_clear(clearTest);
 

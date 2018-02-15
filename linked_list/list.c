@@ -240,14 +240,14 @@ void list_insert(List* list, Node* node, int index)
     }
 }
 
-void list_remove(List* list, int index)
+bool list_remove_i(List* list, int index)
 {
     assert(list != NULL);
 
     if (list_is_empty(list) == true)
     {
         list->lastError = EMPTY_LIST_ERROR;
-        return;
+        return false;
     }
 
     Node* current = list->root;
@@ -273,7 +273,7 @@ void list_remove(List* list, int index)
                 list->lastError = LIST_OKAY;
                 free_node(currentRoot);
             }
-            return;
+            return true;
         }
         previous = current;
         current = current->next;
@@ -281,7 +281,53 @@ void list_remove(List* list, int index)
     } while (current != NULL);
 
     list->lastError = INDEX_OUT_OF_RANGE;
-    return;
+    return false;
+}
+
+// Same as remove_i but rather than checking the index count
+// we check pointer equality against each node in the list with
+// the node input
+bool list_remove_n(List* list, Node* node)
+{
+    assert(list != NULL && node != NULL);
+
+    if (list_is_empty(list) == true)
+    {
+        list->lastError = EMPTY_LIST_ERROR;
+        return false;
+    }
+
+    Node* current = list->root;
+    Node* previous = NULL;
+
+    do
+    {
+        if (current == node)
+        {
+            if (previous != NULL)
+            {
+                Node* currentNext = current->next;
+                previous->next = currentNext;
+                list->lastError = LIST_OKAY;
+                free_node(current);
+            }
+            else
+            {
+                Node* currentRoot = list->root;
+                Node* rootNext = currentRoot->next;
+                list->root = rootNext;
+                list->lastError = LIST_OKAY;
+                free_node(currentRoot);
+            }
+            list->lastError = LIST_OKAY;
+            return true;
+        }
+        previous = current;
+        current = current->next;
+    } while (current != NULL);
+
+    list->lastError = NO_ELEMENT_FOUND;
+    return false;
 }
 
 void free_list(List* list)
