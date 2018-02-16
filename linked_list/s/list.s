@@ -21,7 +21,7 @@ LFB18:
 	movl	%eax, -12(%ebp)
 	cmpl	$0, -12(%ebp)
 	jne	L2
-	movl	$11, 8(%esp)
+	movl	$8, 8(%esp)
 	movl	$LC0, 4(%esp)
 	movl	$LC1, (%esp)
 	call	__assert
@@ -50,7 +50,7 @@ LFB19:
 	subl	$40, %esp
 	cmpl	$0, 8(%ebp)
 	jne	L4
-	movl	$18, 8(%esp)
+	movl	$15, 8(%esp)
 	movl	$LC0, 4(%esp)
 	movl	$LC1, (%esp)
 	call	__assert
@@ -109,7 +109,7 @@ LFB21:
 	subl	$40, %esp
 	cmpl	$0, 8(%ebp)
 	jne	L11
-	movl	$39, 8(%esp)
+	movl	$36, 8(%esp)
 	movl	$LC0, 4(%esp)
 	movl	$LC1, (%esp)
 	call	__assert
@@ -169,7 +169,7 @@ LFB22:
 	cmpl	$0, 8(%ebp)
 	jne	L18
 L17:
-	movl	$68, 8(%esp)
+	movl	$65, 8(%esp)
 	movl	$LC0, 4(%esp)
 	movl	$LC2, (%esp)
 	call	__assert
@@ -220,7 +220,7 @@ LFB23:
 	subl	$40, %esp
 	cmpl	$0, 8(%ebp)
 	jne	L22
-	movl	$88, 8(%esp)
+	movl	$85, 8(%esp)
 	movl	$LC0, 4(%esp)
 	movl	$LC1, (%esp)
 	call	__assert
@@ -288,7 +288,7 @@ LFB25:
 	cmpl	$0, 8(%ebp)
 	jne	L28
 L27:
-	movl	$109, 8(%esp)
+	movl	$106, 8(%esp)
 	movl	$LC0, 4(%esp)
 	movl	$LC2, (%esp)
 	call	__assert
@@ -340,7 +340,7 @@ LFB26:
 	subl	$40, %esp
 	cmpl	$0, 8(%ebp)
 	jne	L35
-	movl	$130, 8(%esp)
+	movl	$127, 8(%esp)
 	movl	$LC0, 4(%esp)
 	movl	$LC1, (%esp)
 	call	__assert
@@ -408,7 +408,7 @@ LFB27:
 	subl	$40, %esp
 	cmpl	$0, 8(%ebp)
 	jne	L44
-	movl	$162, 8(%esp)
+	movl	$159, 8(%esp)
 	movl	$LC0, 4(%esp)
 	movl	$LC1, (%esp)
 	call	__assert
@@ -459,7 +459,7 @@ LFB28:
 	subl	$24, %esp
 	cmpl	$0, 8(%ebp)
 	jne	L51
-	movl	$185, 8(%esp)
+	movl	$182, 8(%esp)
 	movl	$LC0, 4(%esp)
 	movl	$LC1, (%esp)
 	call	__assert
@@ -500,7 +500,7 @@ LFB29:
 	cmpl	$0, 12(%ebp)
 	jne	L55
 L54:
-	movl	$195, 8(%esp)
+	movl	$192, 8(%esp)
 	movl	$LC0, 4(%esp)
 	movl	$LC3, (%esp)
 	call	__assert
@@ -578,9 +578,9 @@ L53:
 	ret
 	.cfi_endproc
 LFE29:
-	.globl	_list_remove
-	.def	_list_remove;	.scl	2;	.type	32;	.endef
-_list_remove:
+	.globl	_list_remove_i
+	.def	_list_remove_i;	.scl	2;	.type	32;	.endef
+_list_remove_i:
 LFB30:
 	.cfi_startproc
 	pushl	%ebp
@@ -591,7 +591,7 @@ LFB30:
 	subl	$56, %esp
 	cmpl	$0, 8(%ebp)
 	jne	L64
-	movl	$245, 8(%esp)
+	movl	$242, 8(%esp)
 	movl	$LC0, 4(%esp)
 	movl	$LC1, (%esp)
 	call	__assert
@@ -603,7 +603,8 @@ L64:
 	jne	L65
 	movl	8(%ebp), %eax
 	movl	$-3, 4(%eax)
-	jmp	L63
+	movl	$0, %eax
+	jmp	L66
 L65:
 	movl	8(%ebp), %eax
 	movl	(%eax), %eax
@@ -627,7 +628,7 @@ L70:
 	movl	-12(%ebp), %eax
 	movl	%eax, (%esp)
 	call	_free_node
-	jmp	L63
+	jmp	L69
 L68:
 	movl	8(%ebp), %eax
 	movl	(%eax), %eax
@@ -643,7 +644,9 @@ L68:
 	movl	-28(%ebp), %eax
 	movl	%eax, (%esp)
 	call	_free_node
-	jmp	L63
+L69:
+	movl	$1, %eax
+	jmp	L66
 L67:
 	movl	-12(%ebp), %eax
 	movl	%eax, -16(%ebp)
@@ -655,18 +658,109 @@ L67:
 	jne	L70
 	movl	8(%ebp), %eax
 	movl	$-1, 4(%eax)
-	nop
-L63:
+	movl	$0, %eax
+L66:
 	leave
 	.cfi_restore 5
 	.cfi_def_cfa 4, 4
 	ret
 	.cfi_endproc
 LFE30:
+	.globl	_list_remove_n
+	.def	_list_remove_n;	.scl	2;	.type	32;	.endef
+_list_remove_n:
+LFB31:
+	.cfi_startproc
+	pushl	%ebp
+	.cfi_def_cfa_offset 8
+	.cfi_offset 5, -8
+	movl	%esp, %ebp
+	.cfi_def_cfa_register 5
+	subl	$56, %esp
+	cmpl	$0, 8(%ebp)
+	je	L72
+	cmpl	$0, 12(%ebp)
+	jne	L73
+L72:
+	movl	$289, 8(%esp)
+	movl	$LC0, 4(%esp)
+	movl	$LC3, (%esp)
+	call	__assert
+L73:
+	movl	8(%ebp), %eax
+	movl	%eax, (%esp)
+	call	_list_is_empty
+	cmpl	$1, %eax
+	jne	L74
+	movl	8(%ebp), %eax
+	movl	$-3, 4(%eax)
+	movl	$0, %eax
+	jmp	L75
+L74:
+	movl	8(%ebp), %eax
+	movl	(%eax), %eax
+	movl	%eax, -12(%ebp)
+	movl	$0, -16(%ebp)
+L79:
+	movl	-12(%ebp), %eax
+	cmpl	12(%ebp), %eax
+	jne	L76
+	cmpl	$0, -16(%ebp)
+	je	L77
+	movl	-12(%ebp), %eax
+	movl	(%eax), %eax
+	movl	%eax, -20(%ebp)
+	movl	-16(%ebp), %eax
+	movl	-20(%ebp), %edx
+	movl	%edx, (%eax)
+	movl	8(%ebp), %eax
+	movl	$0, 4(%eax)
+	movl	-12(%ebp), %eax
+	movl	%eax, (%esp)
+	call	_free_node
+	jmp	L78
+L77:
+	movl	8(%ebp), %eax
+	movl	(%eax), %eax
+	movl	%eax, -24(%ebp)
+	movl	-24(%ebp), %eax
+	movl	(%eax), %eax
+	movl	%eax, -28(%ebp)
+	movl	8(%ebp), %eax
+	movl	-28(%ebp), %edx
+	movl	%edx, (%eax)
+	movl	8(%ebp), %eax
+	movl	$0, 4(%eax)
+	movl	-24(%ebp), %eax
+	movl	%eax, (%esp)
+	call	_free_node
+L78:
+	movl	8(%ebp), %eax
+	movl	$0, 4(%eax)
+	movl	$1, %eax
+	jmp	L75
+L76:
+	movl	-12(%ebp), %eax
+	movl	%eax, -16(%ebp)
+	movl	-12(%ebp), %eax
+	movl	(%eax), %eax
+	movl	%eax, -12(%ebp)
+	cmpl	$0, -12(%ebp)
+	jne	L79
+	movl	8(%ebp), %eax
+	movl	$-4, 4(%eax)
+	movl	$0, %eax
+L75:
+	leave
+	.cfi_restore 5
+	.cfi_def_cfa 4, 4
+	ret
+	.cfi_endproc
+LFE31:
 	.globl	_free_list
 	.def	_free_list;	.scl	2;	.type	32;	.endef
 _free_list:
-LFB31:
+LFB32:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -675,12 +769,12 @@ LFB31:
 	.cfi_def_cfa_register 5
 	subl	$24, %esp
 	cmpl	$0, 8(%ebp)
-	jne	L72
-	movl	$289, 8(%esp)
+	jne	L81
+	movl	$332, 8(%esp)
 	movl	$LC0, 4(%esp)
 	movl	$LC1, (%esp)
 	call	__assert
-L72:
+L81:
 	movl	8(%ebp), %eax
 	movl	%eax, (%esp)
 	call	_list_clear
@@ -693,7 +787,7 @@ L72:
 	.cfi_def_cfa 4, 4
 	ret
 	.cfi_endproc
-LFE31:
+LFE32:
 	.ident	"GCC: (MinGW.org GCC-6.3.0-1) 6.3.0"
 	.def	_malloc;	.scl	2;	.type	32;	.endef
 	.def	__assert;	.scl	2;	.type	32;	.endef

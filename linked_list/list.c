@@ -1,9 +1,6 @@
 
 #include "list.h"
 
-#include <stdio.h>
-#include <unistd.h>
-
 List* list_new()
 {
     List* list          = (List*) malloc(sizeof(List));

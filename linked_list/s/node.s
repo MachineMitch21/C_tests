@@ -3,7 +3,7 @@
 	.globl	_node_new
 	.def	_node_new;	.scl	2;	.type	32;	.endef
 _node_new:
-LFB17:
+LFB18:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -25,11 +25,11 @@ LFB17:
 	.cfi_def_cfa 4, 4
 	ret
 	.cfi_endproc
-LFE17:
+LFE18:
 	.globl	_free_node
 	.def	_free_node;	.scl	2;	.type	32;	.endef
 _free_node:
-LFB18:
+LFB19:
 	.cfi_startproc
 	pushl	%ebp
 	.cfi_def_cfa_offset 8
@@ -47,7 +47,7 @@ LFB18:
 	.cfi_def_cfa 4, 4
 	ret
 	.cfi_endproc
-LFE18:
+LFE19:
 	.ident	"GCC: (MinGW.org GCC-6.3.0-1) 6.3.0"
 	.def	_malloc;	.scl	2;	.type	32;	.endef
 	.def	_free;	.scl	2;	.type	32;	.endef
