@@ -31,6 +31,7 @@
 
 #ifdef _WIN32
 #include <winsock2.h>
+#include <ws2tcpip.h>
 #include <windows.h>
 #pragma comment (lib, "ws2_32.lib")
 #endif // _WIN32
@@ -186,6 +187,8 @@ int main(int argc, char** argv)
 	        iResult = recv(ClientSocket, recvbuf, recvbuflen, 0);
 	        if (iResult > 0) {
 	            printf("Bytes received: %d\n", iResult);
+
+				printf("%s\n", recvbuf);
 
 	        // Echo the buffer back to the sender
 				char* sendBuf = "Stop bothering me";

@@ -17,6 +17,8 @@ memory.h
 -
 winsock2.h
 -
+ws2tcpip.h
+-
 windows.h
 -
 sys/socket.h
