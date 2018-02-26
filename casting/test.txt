@@ -1,0 +1,10 @@
+3
+Thing
+54
+54.299999
+Another thing
+12
+83.199997
+Some other thing
+823
+12.320000

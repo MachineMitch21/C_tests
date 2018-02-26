@@ -1,6 +1,41 @@
 
 #include "list.h"
 
+struct Node_s {
+    Node* next;
+    void* data;
+};
+
+struct List_s {
+    Node*   root;
+    int     lastError;
+};
+
+// --------------------------------------------------------------
+// Node stuff
+
+Node* node_new(void* data, size_t size)
+{
+    Node* node      = (Node*) malloc(sizeof(Node));
+    node->next      = NULL;
+    node->data      = data;
+
+    return node;
+}
+
+void* node_data(Node* node)
+{
+    return node->data;
+}
+
+void free_node(Node* node)
+{
+    free(node);
+    node = NULL;
+}
+
+// -------------------------------------------------------------
+
 List* list_new()
 {
     List* list          = (List*) malloc(sizeof(List));
@@ -8,6 +43,11 @@ List* list_new()
     assert(list != NULL);
     list->root          = NULL;
     list->lastError = LIST_OKAY;
+}
+
+int list_last_error(List* list)
+{
+    return list->lastError;
 }
 
 int list_size(List* list)

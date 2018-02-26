@@ -1,5 +1,6 @@
 
 #include "merge.h"
+#include "util.h"
 
 // This code came from https://www.geeksforgeeks.org/merge-sort/
 // I just pulled it over for educational purposes

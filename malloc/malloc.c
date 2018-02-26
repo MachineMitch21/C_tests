@@ -2,26 +2,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+typedef struct {
+    void* data;
+    void (*print_something)(char*);
+} Test;
+
+typedef struct {
+    void* data;
+    void (*print_something)(char*);
+} Test1;
+
+
+void print_something(char* str)
+{
+    printf("%s\n", str);
+}
+
 int main()
 {
-    int i, n;
-    char* buffer;
+    Test* test = test_new();
 
-    printf("How long do you want the string? ");
-    scanf("%d", &i);
+    char* data = "Some data";
+    test->data = (void*)data;
+    test->print_something = print_something;
 
-    buffer = (char*) malloc(i + 1);
-    if (buffer == NULL)
-        exit(1);
+    Test1* test1 = (Test1*)test;
 
-    for (n = 0; n < i; n++)
-    {
-        buffer[n] = rand() %26 + 'a';
-    }
-    buffer[i] = '\0';
+    test1->print_something("Something");
 
-    printf("Random string: %s\n", buffer);
-    free(buffer);
+    test_free(test);
 
     return 0;
 }
