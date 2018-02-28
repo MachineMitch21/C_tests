@@ -1,0 +1,60 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.col12 {
+    width: 100%;
+}
+
+.col11 {
+    width: 91.67%;
+}
+
+.col10 {
+    width: 83.34%;
+}
+
+.col9 {
+    width: 75%;
+}
+
+.col8 {
+    width: 66.67%;
+}
+
+.col7 {
+    width: 58.34%;
+}
+
+.col6 {
+    width: 50%;
+}
+
+.col5 {
+    width: 41.67%;
+}
+
+.col4 {
+    width: 33.34%;
+}
+
+.col3 {
+    width: 25%;
+}
+
+.col2 {
+    width: 16.67%
+}
+
+.col1 {
+    width: 8.34%;
+}
+
+#divSignIn {
+    margin: auto;
+}

@@ -1,0 +1,17 @@
+{
+    "name": "client",
+    "version": "1.0.0",
+    "description": "client for bankmanagement system",
+    "main": "main.js",
+    "scripts": {
+        "start": "electron ."
+    },
+    "author": "Mitch Schutt",
+    "license": "MIT",
+    "dependencies": {
+        "electron": "^1.8.2"
+    },
+    "devDependencies": {
+        "electron-packager": "^11.0.1"
+    }
+}

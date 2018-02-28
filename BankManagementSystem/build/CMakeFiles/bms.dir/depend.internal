@@ -5,6 +5,9 @@ CMakeFiles/bms.dir/src/account.c.obj
  F:/Code/C_tests/BankManagementSystem/src/account.c
 CMakeFiles/bms.dir/src/bms.c.obj
  ../include/bms/bms_server.h
+ ../include/bms/database_manager.h
+ ../include/bms/net_parser.h
+ ../include/sqlite3/sqlite3.h
  F:/Code/C_tests/BankManagementSystem/src/bms.c
 CMakeFiles/bms.dir/src/bms_server.c.obj
  ../include/bms/bms_server.h
@@ -14,8 +17,18 @@ CMakeFiles/bms.dir/src/customer.c.obj
  ../include/bms/customer.h
  ../include/bms/list.h
  F:/Code/C_tests/BankManagementSystem/src/customer.c
+CMakeFiles/bms.dir/src/database_manager.c.obj
+ ../include/bms/database_manager.h
+ ../include/sqlite3/sqlite3.h
+ F:/Code/C_tests/BankManagementSystem/src/database_manager.c
 CMakeFiles/bms.dir/src/employee.c.obj
  F:/Code/C_tests/BankManagementSystem/src/employee.c
 CMakeFiles/bms.dir/src/list.c.obj
  ../include/bms/list.h
  F:/Code/C_tests/BankManagementSystem/src/list.c
+CMakeFiles/bms.dir/src/net_parser.c.obj
+ ../include/bms/bms_server.h
+ ../include/bms/net_parser.h
+ F:/Code/C_tests/BankManagementSystem/src/net_parser.c
+CMakeFiles/bms.dir/src/sqlite3.c.obj
+ F:/Code/C_tests/BankManagementSystem/src/sqlite3.c

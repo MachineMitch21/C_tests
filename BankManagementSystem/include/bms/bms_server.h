@@ -1,3 +1,7 @@
+
+#ifndef __BMS_SERVER_H__
+#define __BMS_SERVER_H__
+
 #include <stdio.h>
 #include <errno.h>
 #include <memory.h>
@@ -31,4 +35,8 @@ typedef struct Client_s Client;  // The struct that will hold the accepted clien
 Server* server_init(const char* ip, const char* port, int* status);
 Client* server_acceptConn(Server* server, int* status);
 void    server_receive(Client* client, NetData* netData, int* status);
+void    server_send(Client* client, char* msg, int* status);
 void    server_cleanup(Server* server, int* status);
+void    server_cleanup_c(Client* client);
+
+#endif // __BMS_SERVER_H__

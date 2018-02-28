@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign In</title>
+    <link href="style.css" type="txt/css"/>
+</head>
+<body>
+    <h1>BMS</h1>
+    <form>
+        <div id="divSignIn">
+            <label>Username</label>
+            <input type="text" id="iUserName" autofocus>
+            <label>Password</label>
+            <input type="text" id="iPassword" autofocus>
+        </div>
+        <button type="submit" id="btnSubmitSignIn">Sign In</button>
+    </form>
+
+    <script>
+        const iUserName = document.querySelector('#iUserName');
+        const iPassword = document.querySelector('#iPassword');
+        const form      = document.querySelector('form');
+
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+            sendData('0,' + iUserName.value + ':' + iPassword.value + '!');
+        });
+    </script>
+
+    <script src="socket.js"></script>
+</body>
+</html>

@@ -232,6 +232,33 @@ src\customer.c.s:
 	$(MAKE) -f CMakeFiles\bms.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\bms.dir\src\customer.c.s
 .PHONY : src\customer.c.s
 
+src\database_manager.obj: src\database_manager.c.obj
+
+.PHONY : src\database_manager.obj
+
+# target to build an object file
+src\database_manager.c.obj:
+	$(MAKE) -f CMakeFiles\bms.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\bms.dir\src\database_manager.c.obj
+.PHONY : src\database_manager.c.obj
+
+src\database_manager.i: src\database_manager.c.i
+
+.PHONY : src\database_manager.i
+
+# target to preprocess a source file
+src\database_manager.c.i:
+	$(MAKE) -f CMakeFiles\bms.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\bms.dir\src\database_manager.c.i
+.PHONY : src\database_manager.c.i
+
+src\database_manager.s: src\database_manager.c.s
+
+.PHONY : src\database_manager.s
+
+# target to generate assembly for a file
+src\database_manager.c.s:
+	$(MAKE) -f CMakeFiles\bms.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\bms.dir\src\database_manager.c.s
+.PHONY : src\database_manager.c.s
+
 src\employee.obj: src\employee.c.obj
 
 .PHONY : src\employee.obj
@@ -286,6 +313,60 @@ src\list.c.s:
 	$(MAKE) -f CMakeFiles\bms.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\bms.dir\src\list.c.s
 .PHONY : src\list.c.s
 
+src\net_parser.obj: src\net_parser.c.obj
+
+.PHONY : src\net_parser.obj
+
+# target to build an object file
+src\net_parser.c.obj:
+	$(MAKE) -f CMakeFiles\bms.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\bms.dir\src\net_parser.c.obj
+.PHONY : src\net_parser.c.obj
+
+src\net_parser.i: src\net_parser.c.i
+
+.PHONY : src\net_parser.i
+
+# target to preprocess a source file
+src\net_parser.c.i:
+	$(MAKE) -f CMakeFiles\bms.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\bms.dir\src\net_parser.c.i
+.PHONY : src\net_parser.c.i
+
+src\net_parser.s: src\net_parser.c.s
+
+.PHONY : src\net_parser.s
+
+# target to generate assembly for a file
+src\net_parser.c.s:
+	$(MAKE) -f CMakeFiles\bms.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\bms.dir\src\net_parser.c.s
+.PHONY : src\net_parser.c.s
+
+src\sqlite3.obj: src\sqlite3.c.obj
+
+.PHONY : src\sqlite3.obj
+
+# target to build an object file
+src\sqlite3.c.obj:
+	$(MAKE) -f CMakeFiles\bms.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\bms.dir\src\sqlite3.c.obj
+.PHONY : src\sqlite3.c.obj
+
+src\sqlite3.i: src\sqlite3.c.i
+
+.PHONY : src\sqlite3.i
+
+# target to preprocess a source file
+src\sqlite3.c.i:
+	$(MAKE) -f CMakeFiles\bms.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\bms.dir\src\sqlite3.c.i
+.PHONY : src\sqlite3.c.i
+
+src\sqlite3.s: src\sqlite3.c.s
+
+.PHONY : src\sqlite3.s
+
+# target to generate assembly for a file
+src\sqlite3.c.s:
+	$(MAKE) -f CMakeFiles\bms.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\bms.dir\src\sqlite3.c.s
+.PHONY : src\sqlite3.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -307,12 +388,21 @@ help:
 	@echo ... src/customer.obj
 	@echo ... src/customer.i
 	@echo ... src/customer.s
+	@echo ... src/database_manager.obj
+	@echo ... src/database_manager.i
+	@echo ... src/database_manager.s
 	@echo ... src/employee.obj
 	@echo ... src/employee.i
 	@echo ... src/employee.s
 	@echo ... src/list.obj
 	@echo ... src/list.i
 	@echo ... src/list.s
+	@echo ... src/net_parser.obj
+	@echo ... src/net_parser.i
+	@echo ... src/net_parser.s
+	@echo ... src/sqlite3.obj
+	@echo ... src/sqlite3.i
+	@echo ... src/sqlite3.s
 .PHONY : help
 
 

@@ -1,10 +1,11 @@
 #include <bms/customer.h>
 
 struct Customer_s {
-    char*   _name;
-    long    _phoneNumber;
-    char*   _address;
-    List*   _accounts;
+    unsigned int    _id;
+    char*           _name;
+    long            _phoneNumber;
+    char*           _address;
+    List*           _accounts;
 };
 
 Customer*  customer_new()

@@ -2,10 +2,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <bms/bms_server.h>
+#include <bms/database_manager.h>
+#include <bms/net_parser.h>
 
 int main(int argc, char** argv)
 {
     int status;
+
+    int rc;
+
+    char* cols_vals[] = {
+        "Name", "Matt",
+        "Phone", "7651238745",
+        "Address", "34 W Test St."
+    };
+
+    db_alter_customer(1, cols_vals, 3, &rc);
 
     Server* server = server_init(DEFAULT_IP, DEFAULT_PORT, &status);
 
@@ -19,10 +31,14 @@ int main(int argc, char** argv)
 
             server_receive(client, &net_data, &status);
 
-            if (net_data.size < DEFAULT_BUFFER_SIZE)
-                memset(&net_data.data[net_data.size], '\0', 1);
-
             printf("%s\n", net_data.data);
+            NetMessage* net_msg = parse_netMsg(net_data.data);
+            print_netMsg(net_msg);
+            cleanup_netMessage(net_msg);
+            server_send(client, "I got your message, bruh..", &status);
+
+            if (client != NULL)
+                closesocket(client);
         }
 
         server_cleanup(server, &status);

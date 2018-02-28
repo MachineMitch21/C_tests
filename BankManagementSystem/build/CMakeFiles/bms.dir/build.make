@@ -61,19 +61,19 @@ include CMakeFiles\bms.dir\flags.make
 CMakeFiles\bms.dir\src\account.c.obj: CMakeFiles\bms.dir\flags.make
 CMakeFiles\bms.dir\src\account.c.obj: ..\src\account.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\Code\C_tests\BankManagementSystem\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/bms.dir/src/account.c.obj"
-	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe @<<
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @<<
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoCMakeFiles\bms.dir\src\account.c.obj /FdCMakeFiles\bms.dir\ /FS -c F:\Code\C_tests\BankManagementSystem\src\account.c
 <<
 
 CMakeFiles\bms.dir\src\account.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/bms.dir/src/account.c.i"
-	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe > CMakeFiles\bms.dir\src\account.c.i @<<
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe > CMakeFiles\bms.dir\src\account.c.i @<<
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\Code\C_tests\BankManagementSystem\src\account.c
 <<
 
 CMakeFiles\bms.dir\src\account.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/bms.dir/src/account.c.s"
-	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe @<<
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @<<
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoNUL /FAs /FaCMakeFiles\bms.dir\src\account.c.s /c F:\Code\C_tests\BankManagementSystem\src\account.c
 <<
 
@@ -91,19 +91,19 @@ CMakeFiles\bms.dir\src\account.c.obj.provides.build: CMakeFiles\bms.dir\src\acco
 CMakeFiles\bms.dir\src\bms.c.obj: CMakeFiles\bms.dir\flags.make
 CMakeFiles\bms.dir\src\bms.c.obj: ..\src\bms.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\Code\C_tests\BankManagementSystem\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/bms.dir/src/bms.c.obj"
-	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe @<<
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @<<
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoCMakeFiles\bms.dir\src\bms.c.obj /FdCMakeFiles\bms.dir\ /FS -c F:\Code\C_tests\BankManagementSystem\src\bms.c
 <<
 
 CMakeFiles\bms.dir\src\bms.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/bms.dir/src/bms.c.i"
-	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe > CMakeFiles\bms.dir\src\bms.c.i @<<
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe > CMakeFiles\bms.dir\src\bms.c.i @<<
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\Code\C_tests\BankManagementSystem\src\bms.c
 <<
 
 CMakeFiles\bms.dir\src\bms.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/bms.dir/src/bms.c.s"
-	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe @<<
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @<<
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoNUL /FAs /FaCMakeFiles\bms.dir\src\bms.c.s /c F:\Code\C_tests\BankManagementSystem\src\bms.c
 <<
 
@@ -121,19 +121,19 @@ CMakeFiles\bms.dir\src\bms.c.obj.provides.build: CMakeFiles\bms.dir\src\bms.c.ob
 CMakeFiles\bms.dir\src\bms_server.c.obj: CMakeFiles\bms.dir\flags.make
 CMakeFiles\bms.dir\src\bms_server.c.obj: ..\src\bms_server.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\Code\C_tests\BankManagementSystem\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/bms.dir/src/bms_server.c.obj"
-	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe @<<
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @<<
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoCMakeFiles\bms.dir\src\bms_server.c.obj /FdCMakeFiles\bms.dir\ /FS -c F:\Code\C_tests\BankManagementSystem\src\bms_server.c
 <<
 
 CMakeFiles\bms.dir\src\bms_server.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/bms.dir/src/bms_server.c.i"
-	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe > CMakeFiles\bms.dir\src\bms_server.c.i @<<
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe > CMakeFiles\bms.dir\src\bms_server.c.i @<<
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\Code\C_tests\BankManagementSystem\src\bms_server.c
 <<
 
 CMakeFiles\bms.dir\src\bms_server.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/bms.dir/src/bms_server.c.s"
-	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe @<<
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @<<
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoNUL /FAs /FaCMakeFiles\bms.dir\src\bms_server.c.s /c F:\Code\C_tests\BankManagementSystem\src\bms_server.c
 <<
 
@@ -151,19 +151,19 @@ CMakeFiles\bms.dir\src\bms_server.c.obj.provides.build: CMakeFiles\bms.dir\src\b
 CMakeFiles\bms.dir\src\customer.c.obj: CMakeFiles\bms.dir\flags.make
 CMakeFiles\bms.dir\src\customer.c.obj: ..\src\customer.c
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\Code\C_tests\BankManagementSystem\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/bms.dir/src/customer.c.obj"
-	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe @<<
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @<<
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoCMakeFiles\bms.dir\src\customer.c.obj /FdCMakeFiles\bms.dir\ /FS -c F:\Code\C_tests\BankManagementSystem\src\customer.c
 <<
 
 CMakeFiles\bms.dir\src\customer.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/bms.dir/src/customer.c.i"
-	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe > CMakeFiles\bms.dir\src\customer.c.i @<<
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe > CMakeFiles\bms.dir\src\customer.c.i @<<
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\Code\C_tests\BankManagementSystem\src\customer.c
 <<
 
 CMakeFiles\bms.dir\src\customer.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/bms.dir/src/customer.c.s"
-	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe @<<
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @<<
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoNUL /FAs /FaCMakeFiles\bms.dir\src\customer.c.s /c F:\Code\C_tests\BankManagementSystem\src\customer.c
 <<
 
@@ -178,22 +178,52 @@ CMakeFiles\bms.dir\src\customer.c.obj.provides: CMakeFiles\bms.dir\src\customer.
 CMakeFiles\bms.dir\src\customer.c.obj.provides.build: CMakeFiles\bms.dir\src\customer.c.obj
 
 
+CMakeFiles\bms.dir\src\database_manager.c.obj: CMakeFiles\bms.dir\flags.make
+CMakeFiles\bms.dir\src\database_manager.c.obj: ..\src\database_manager.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\Code\C_tests\BankManagementSystem\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/bms.dir/src/database_manager.c.obj"
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @<<
+ /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoCMakeFiles\bms.dir\src\database_manager.c.obj /FdCMakeFiles\bms.dir\ /FS -c F:\Code\C_tests\BankManagementSystem\src\database_manager.c
+<<
+
+CMakeFiles\bms.dir\src\database_manager.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/bms.dir/src/database_manager.c.i"
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe > CMakeFiles\bms.dir\src\database_manager.c.i @<<
+ /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\Code\C_tests\BankManagementSystem\src\database_manager.c
+<<
+
+CMakeFiles\bms.dir\src\database_manager.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/bms.dir/src/database_manager.c.s"
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @<<
+ /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoNUL /FAs /FaCMakeFiles\bms.dir\src\database_manager.c.s /c F:\Code\C_tests\BankManagementSystem\src\database_manager.c
+<<
+
+CMakeFiles\bms.dir\src\database_manager.c.obj.requires:
+
+.PHONY : CMakeFiles\bms.dir\src\database_manager.c.obj.requires
+
+CMakeFiles\bms.dir\src\database_manager.c.obj.provides: CMakeFiles\bms.dir\src\database_manager.c.obj.requires
+	$(MAKE) -f CMakeFiles\bms.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\bms.dir\src\database_manager.c.obj.provides.build
+.PHONY : CMakeFiles\bms.dir\src\database_manager.c.obj.provides
+
+CMakeFiles\bms.dir\src\database_manager.c.obj.provides.build: CMakeFiles\bms.dir\src\database_manager.c.obj
+
+
 CMakeFiles\bms.dir\src\employee.c.obj: CMakeFiles\bms.dir\flags.make
 CMakeFiles\bms.dir\src\employee.c.obj: ..\src\employee.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\Code\C_tests\BankManagementSystem\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/bms.dir/src/employee.c.obj"
-	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe @<<
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\Code\C_tests\BankManagementSystem\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/bms.dir/src/employee.c.obj"
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @<<
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoCMakeFiles\bms.dir\src\employee.c.obj /FdCMakeFiles\bms.dir\ /FS -c F:\Code\C_tests\BankManagementSystem\src\employee.c
 <<
 
 CMakeFiles\bms.dir\src\employee.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/bms.dir/src/employee.c.i"
-	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe > CMakeFiles\bms.dir\src\employee.c.i @<<
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe > CMakeFiles\bms.dir\src\employee.c.i @<<
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\Code\C_tests\BankManagementSystem\src\employee.c
 <<
 
 CMakeFiles\bms.dir\src\employee.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/bms.dir/src/employee.c.s"
-	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe @<<
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @<<
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoNUL /FAs /FaCMakeFiles\bms.dir\src\employee.c.s /c F:\Code\C_tests\BankManagementSystem\src\employee.c
 <<
 
@@ -210,20 +240,20 @@ CMakeFiles\bms.dir\src\employee.c.obj.provides.build: CMakeFiles\bms.dir\src\emp
 
 CMakeFiles\bms.dir\src\list.c.obj: CMakeFiles\bms.dir\flags.make
 CMakeFiles\bms.dir\src\list.c.obj: ..\src\list.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\Code\C_tests\BankManagementSystem\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/bms.dir/src/list.c.obj"
-	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe @<<
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\Code\C_tests\BankManagementSystem\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/bms.dir/src/list.c.obj"
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @<<
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoCMakeFiles\bms.dir\src\list.c.obj /FdCMakeFiles\bms.dir\ /FS -c F:\Code\C_tests\BankManagementSystem\src\list.c
 <<
 
 CMakeFiles\bms.dir\src\list.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/bms.dir/src/list.c.i"
-	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe > CMakeFiles\bms.dir\src\list.c.i @<<
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe > CMakeFiles\bms.dir\src\list.c.i @<<
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\Code\C_tests\BankManagementSystem\src\list.c
 <<
 
 CMakeFiles\bms.dir\src\list.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/bms.dir/src/list.c.s"
-	C:\PROGRA~2\MICROS~1.0\VC\bin\cl.exe @<<
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @<<
  /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoNUL /FAs /FaCMakeFiles\bms.dir\src\list.c.s /c F:\Code\C_tests\BankManagementSystem\src\list.c
 <<
 
@@ -238,14 +268,77 @@ CMakeFiles\bms.dir\src\list.c.obj.provides: CMakeFiles\bms.dir\src\list.c.obj.re
 CMakeFiles\bms.dir\src\list.c.obj.provides.build: CMakeFiles\bms.dir\src\list.c.obj
 
 
+CMakeFiles\bms.dir\src\net_parser.c.obj: CMakeFiles\bms.dir\flags.make
+CMakeFiles\bms.dir\src\net_parser.c.obj: ..\src\net_parser.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\Code\C_tests\BankManagementSystem\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/bms.dir/src/net_parser.c.obj"
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @<<
+ /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoCMakeFiles\bms.dir\src\net_parser.c.obj /FdCMakeFiles\bms.dir\ /FS -c F:\Code\C_tests\BankManagementSystem\src\net_parser.c
+<<
+
+CMakeFiles\bms.dir\src\net_parser.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/bms.dir/src/net_parser.c.i"
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe > CMakeFiles\bms.dir\src\net_parser.c.i @<<
+ /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\Code\C_tests\BankManagementSystem\src\net_parser.c
+<<
+
+CMakeFiles\bms.dir\src\net_parser.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/bms.dir/src/net_parser.c.s"
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @<<
+ /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoNUL /FAs /FaCMakeFiles\bms.dir\src\net_parser.c.s /c F:\Code\C_tests\BankManagementSystem\src\net_parser.c
+<<
+
+CMakeFiles\bms.dir\src\net_parser.c.obj.requires:
+
+.PHONY : CMakeFiles\bms.dir\src\net_parser.c.obj.requires
+
+CMakeFiles\bms.dir\src\net_parser.c.obj.provides: CMakeFiles\bms.dir\src\net_parser.c.obj.requires
+	$(MAKE) -f CMakeFiles\bms.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\bms.dir\src\net_parser.c.obj.provides.build
+.PHONY : CMakeFiles\bms.dir\src\net_parser.c.obj.provides
+
+CMakeFiles\bms.dir\src\net_parser.c.obj.provides.build: CMakeFiles\bms.dir\src\net_parser.c.obj
+
+
+CMakeFiles\bms.dir\src\sqlite3.c.obj: CMakeFiles\bms.dir\flags.make
+CMakeFiles\bms.dir\src\sqlite3.c.obj: ..\src\sqlite3.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=F:\Code\C_tests\BankManagementSystem\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/bms.dir/src/sqlite3.c.obj"
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @<<
+ /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoCMakeFiles\bms.dir\src\sqlite3.c.obj /FdCMakeFiles\bms.dir\ /FS -c F:\Code\C_tests\BankManagementSystem\src\sqlite3.c
+<<
+
+CMakeFiles\bms.dir\src\sqlite3.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/bms.dir/src/sqlite3.c.i"
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe > CMakeFiles\bms.dir\src\sqlite3.c.i @<<
+ /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E F:\Code\C_tests\BankManagementSystem\src\sqlite3.c
+<<
+
+CMakeFiles\bms.dir\src\sqlite3.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/bms.dir/src/sqlite3.c.s"
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @<<
+ /nologo $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) /FoNUL /FAs /FaCMakeFiles\bms.dir\src\sqlite3.c.s /c F:\Code\C_tests\BankManagementSystem\src\sqlite3.c
+<<
+
+CMakeFiles\bms.dir\src\sqlite3.c.obj.requires:
+
+.PHONY : CMakeFiles\bms.dir\src\sqlite3.c.obj.requires
+
+CMakeFiles\bms.dir\src\sqlite3.c.obj.provides: CMakeFiles\bms.dir\src\sqlite3.c.obj.requires
+	$(MAKE) -f CMakeFiles\bms.dir\build.make /nologo -$(MAKEFLAGS) CMakeFiles\bms.dir\src\sqlite3.c.obj.provides.build
+.PHONY : CMakeFiles\bms.dir\src\sqlite3.c.obj.provides
+
+CMakeFiles\bms.dir\src\sqlite3.c.obj.provides.build: CMakeFiles\bms.dir\src\sqlite3.c.obj
+
+
 # Object files for target bms
 bms_OBJECTS = \
 "CMakeFiles\bms.dir\src\account.c.obj" \
 "CMakeFiles\bms.dir\src\bms.c.obj" \
 "CMakeFiles\bms.dir\src\bms_server.c.obj" \
 "CMakeFiles\bms.dir\src\customer.c.obj" \
+"CMakeFiles\bms.dir\src\database_manager.c.obj" \
 "CMakeFiles\bms.dir\src\employee.c.obj" \
-"CMakeFiles\bms.dir\src\list.c.obj"
+"CMakeFiles\bms.dir\src\list.c.obj" \
+"CMakeFiles\bms.dir\src\net_parser.c.obj" \
+"CMakeFiles\bms.dir\src\sqlite3.c.obj"
 
 # External object files for target bms
 bms_EXTERNAL_OBJECTS =
@@ -254,13 +347,16 @@ bms.exe: CMakeFiles\bms.dir\src\account.c.obj
 bms.exe: CMakeFiles\bms.dir\src\bms.c.obj
 bms.exe: CMakeFiles\bms.dir\src\bms_server.c.obj
 bms.exe: CMakeFiles\bms.dir\src\customer.c.obj
+bms.exe: CMakeFiles\bms.dir\src\database_manager.c.obj
 bms.exe: CMakeFiles\bms.dir\src\employee.c.obj
 bms.exe: CMakeFiles\bms.dir\src\list.c.obj
+bms.exe: CMakeFiles\bms.dir\src\net_parser.c.obj
+bms.exe: CMakeFiles\bms.dir\src\sqlite3.c.obj
 bms.exe: CMakeFiles\bms.dir\build.make
 bms.exe: CMakeFiles\bms.dir\objects1.rsp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=F:\Code\C_tests\BankManagementSystem\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C executable bms.exe"
-	"C:\Program Files\CMake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\bms.dir --manifests  -- C:\PROGRA~2\MICROS~1.0\VC\bin\link.exe /nologo @CMakeFiles\bms.dir\objects1.rsp @<<
- /out:bms.exe /implib:bms.lib /pdb:F:\Code\C_tests\BankManagementSystem\build\bms.pdb /version:0.0  /machine:X86 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=F:\Code\C_tests\BankManagementSystem\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking C executable bms.exe"
+	"C:\Program Files\CMake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\bms.dir --manifests  -- C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\link.exe /nologo @CMakeFiles\bms.dir\objects1.rsp @<<
+ /out:bms.exe /implib:bms.lib /pdb:F:\Code\C_tests\BankManagementSystem\build\bms.pdb /version:0.0  /machine:x64 /debug /INCREMENTAL /subsystem:console kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib 
 <<
 
 # Rule to build all files generated by this target.
@@ -272,8 +368,11 @@ CMakeFiles\bms.dir\requires: CMakeFiles\bms.dir\src\account.c.obj.requires
 CMakeFiles\bms.dir\requires: CMakeFiles\bms.dir\src\bms.c.obj.requires
 CMakeFiles\bms.dir\requires: CMakeFiles\bms.dir\src\bms_server.c.obj.requires
 CMakeFiles\bms.dir\requires: CMakeFiles\bms.dir\src\customer.c.obj.requires
+CMakeFiles\bms.dir\requires: CMakeFiles\bms.dir\src\database_manager.c.obj.requires
 CMakeFiles\bms.dir\requires: CMakeFiles\bms.dir\src\employee.c.obj.requires
 CMakeFiles\bms.dir\requires: CMakeFiles\bms.dir\src\list.c.obj.requires
+CMakeFiles\bms.dir\requires: CMakeFiles\bms.dir\src\net_parser.c.obj.requires
+CMakeFiles\bms.dir\requires: CMakeFiles\bms.dir\src\sqlite3.c.obj.requires
 
 .PHONY : CMakeFiles\bms.dir\requires
 

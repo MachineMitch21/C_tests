@@ -28,8 +28,6 @@ Server* server_init(const char* ip, const char* port, int* status)
 
         *status = WSAStartup(MAKEWORD(2, 2), &wsaData);
 
-        printf("%d\n", *status);
-
         if (*status != 0)
         {
             free(server);
@@ -44,8 +42,6 @@ Server* server_init(const char* ip, const char* port, int* status)
 
         *status = getaddrinfo(NULL, port, &server->hints, &server->result);
 
-        printf("%d\n", *status);
-
         if (*status != 0)
         {
             free(server);
@@ -58,7 +54,6 @@ Server* server_init(const char* ip, const char* port, int* status)
         if (server->socket == INVALID_SOCKET)
         {
             *status = WSAGetLastError();
-            printf("%d \n", *status);
             freeaddrinfo(server->result);
             free(server);
             WSACleanup();
@@ -66,8 +61,6 @@ Server* server_init(const char* ip, const char* port, int* status)
         }
 
         *status = bind(server->socket, server->result->ai_addr, (int)server->result->ai_addrlen);
-
-        printf("%d\n", *status);
 
         if (*status == SOCKET_ERROR)
         {
@@ -83,13 +76,10 @@ Server* server_init(const char* ip, const char* port, int* status)
 
         *status = listen(server->socket, SOMAXCONN);
 
-        printf("%d\n", *status);
-
         if (*status == SOCKET_ERROR)
         {
             *status = WSAGetLastError();
-            closesocket(server->socket);
-            free(server);
+            server_cleanup_c(client);
             return NULL;
         }
 
@@ -102,7 +92,7 @@ Server* server_init(const char* ip, const char* port, int* status)
 
 Client* server_acceptConn(Server* server, int* status)
 {
-    printf("\n\nWaiting for a client to connect..\n\n");
+    printf("Waiting for a client to connect..\n\n");
 
     Client* client = (Client*) malloc(sizeof(Client));
 
@@ -113,8 +103,7 @@ Client* server_acceptConn(Server* server, int* status)
         if (client->socket == INVALID_SOCKET)
         {
             *status = WSAGetLastError();
-            closesocket(client->socket);
-            free(client);
+            server_cleanup_c(client);
             WSACleanup();
             return NULL;
         }
@@ -128,28 +117,18 @@ Client* server_acceptConn(Server* server, int* status)
 
 void server_receive(Client* client, NetData* netData, int* status)
 {
+    // We need to make sure we don't have any garbage bytes in netData->data
+    memset(netData->data, 0, DEFAULT_BUFFER_SIZE);
+
     #ifdef _WIN32
 
         int recResult;
-        int sendResult;
         recResult = recv(client->socket, netData->data, DEFAULT_BUFFER_SIZE, 0);
         netData->size = recResult;
 
         if (recResult > 0)
         {
             printf("Bytes received: %d\n", recResult);
-
-            char* sendBuf = "Message recieved";
-
-            sendResult = send(client->socket, sendBuf, strlen(sendBuf), 0);
-
-            if (sendResult == SOCKET_ERROR)
-            {
-                *status = WSAGetLastError();
-                closesocket(client->socket);
-                WSACleanup();
-            }
-            printf("Bytes sent: %d\n", sendResult);
         }
         else if (recResult == 0)
         {
@@ -158,17 +137,29 @@ void server_receive(Client* client, NetData* netData, int* status)
         else
         {
             *status = WSAGetLastError();
-            closesocket(client->socket);
+            server_cleanup_c(client);
             WSACleanup();
+            return;
         }
-
-        *status = 0;
-
-        closesocket(client->socket);
 
     #endif // _WIN32
 
-    free(client);
+    *status = 0;
+}
+
+void server_send(Client* client, char* msg, int* status)
+{
+    *status = send(client->socket, msg, strlen(msg), 0);
+
+    if (*status == SOCKET_ERROR)
+    {
+        *status = WSAGetLastError();
+        server_cleanup_c(client);
+        WSACleanup();
+        return;
+    }
+
+    printf("Bytes sent: %d\n", *status);
 }
 
 void server_cleanup(Server* server, int* status)
@@ -182,4 +173,10 @@ void server_cleanup(Server* server, int* status)
 
     free(server);
     *status = 0;
+}
+
+void server_cleanup_c(Client* client)
+{
+    closesocket(client->socket);
+    free(client);
 }

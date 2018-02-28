@@ -4,6 +4,9 @@
 CMakeFiles\bms.dir\src\account.c.obj: ..\src\account.c
 
 CMakeFiles\bms.dir\src\bms.c.obj: ..\include\bms\bms_server.h
+CMakeFiles\bms.dir\src\bms.c.obj: ..\include\bms\database_manager.h
+CMakeFiles\bms.dir\src\bms.c.obj: ..\include\bms\net_parser.h
+CMakeFiles\bms.dir\src\bms.c.obj: ..\include\sqlite3\sqlite3.h
 CMakeFiles\bms.dir\src\bms.c.obj: ..\src\bms.c
 
 CMakeFiles\bms.dir\src\bms_server.c.obj: ..\include\bms\bms_server.h
@@ -14,8 +17,18 @@ CMakeFiles\bms.dir\src\customer.c.obj: ..\include\bms\customer.h
 CMakeFiles\bms.dir\src\customer.c.obj: ..\include\bms\list.h
 CMakeFiles\bms.dir\src\customer.c.obj: ..\src\customer.c
 
+CMakeFiles\bms.dir\src\database_manager.c.obj: ..\include\bms\database_manager.h
+CMakeFiles\bms.dir\src\database_manager.c.obj: ..\include\sqlite3\sqlite3.h
+CMakeFiles\bms.dir\src\database_manager.c.obj: ..\src\database_manager.c
+
 CMakeFiles\bms.dir\src\employee.c.obj: ..\src\employee.c
 
 CMakeFiles\bms.dir\src\list.c.obj: ..\include\bms\list.h
 CMakeFiles\bms.dir\src\list.c.obj: ..\src\list.c
+
+CMakeFiles\bms.dir\src\net_parser.c.obj: ..\include\bms\bms_server.h
+CMakeFiles\bms.dir\src\net_parser.c.obj: ..\include\bms\net_parser.h
+CMakeFiles\bms.dir\src\net_parser.c.obj: ..\src\net_parser.c
+
+CMakeFiles\bms.dir\src\sqlite3.c.obj: ..\src\sqlite3.c
 
