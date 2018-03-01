@@ -50,49 +50,49 @@ The CXX compiler identification is MSVC, found in "F:/Code/C_tests/BankManagemen
 Determining if the C compiler works passed with the following output:
 Change Dir: F:/Code/C_tests/BankManagementSystem/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"nmake" "/NOLOGO" "cmTC_af671\fast"
-	"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\BIN\amd64\nmake.exe" -f CMakeFiles\cmTC_af671.dir\build.make /nologo -L                  CMakeFiles\cmTC_af671.dir\build
-Building C object CMakeFiles/cmTC_af671.dir/testCCompiler.c.obj
-	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @C:\Users\mitch\AppData\Local\Temp\nm9AA5.tmp
+Run Build Command:"nmake" "/NOLOGO" "cmTC_264f1\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\BIN\amd64\nmake.exe" -f CMakeFiles\cmTC_264f1.dir\build.make /nologo -L                  CMakeFiles\cmTC_264f1.dir\build
+Building C object CMakeFiles/cmTC_264f1.dir/testCCompiler.c.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @C:\Users\mitch\AppData\Local\Temp\nmE6BA.tmp
 testCCompiler.c
-Linking C executable cmTC_af671.exe
-	"C:\Program Files\CMake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_af671.dir --manifests  -- C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\link.exe /nologo @CMakeFiles\cmTC_af671.dir\objects1.rsp @C:\Users\mitch\AppData\Local\Temp\nm9B90.tmp
+Linking C executable cmTC_264f1.exe
+	"C:\Program Files\CMake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_264f1.dir --manifests  -- C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\link.exe /nologo @CMakeFiles\cmTC_264f1.dir\objects1.rsp @C:\Users\mitch\AppData\Local\Temp\nmE851.tmp
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: F:/Code/C_tests/BankManagementSystem/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"nmake" "/NOLOGO" "cmTC_92711\fast"
-	"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\BIN\amd64\nmake.exe" -f CMakeFiles\cmTC_92711.dir\build.make /nologo -L                  CMakeFiles\cmTC_92711.dir\build
-Building C object CMakeFiles/cmTC_92711.dir/CMakeCCompilerABI.c.obj
-	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @C:\Users\mitch\AppData\Local\Temp\nm9EEB.tmp
+Run Build Command:"nmake" "/NOLOGO" "cmTC_862b5\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\BIN\amd64\nmake.exe" -f CMakeFiles\cmTC_862b5.dir\build.make /nologo -L                  CMakeFiles\cmTC_862b5.dir\build
+Building C object CMakeFiles/cmTC_862b5.dir/CMakeCCompilerABI.c.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @C:\Users\mitch\AppData\Local\Temp\nmEC96.tmp
 CMakeCCompilerABI.c
-Linking C executable cmTC_92711.exe
-	"C:\Program Files\CMake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_92711.dir --manifests  -- C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\link.exe /nologo @CMakeFiles\cmTC_92711.dir\objects1.rsp @C:\Users\mitch\AppData\Local\Temp\nm9FE6.tmp
+Linking C executable cmTC_862b5.exe
+	"C:\Program Files\CMake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_862b5.dir --manifests  -- C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\link.exe /nologo @CMakeFiles\cmTC_862b5.dir\objects1.rsp @C:\Users\mitch\AppData\Local\Temp\nmEDFE.tmp
 
 
 Determining if the CXX compiler works passed with the following output:
 Change Dir: F:/Code/C_tests/BankManagementSystem/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"nmake" "/NOLOGO" "cmTC_d8cb2\fast"
-	"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\BIN\amd64\nmake.exe" -f CMakeFiles\cmTC_d8cb2.dir\build.make /nologo -L                  CMakeFiles\cmTC_d8cb2.dir\build
-Building CXX object CMakeFiles/cmTC_d8cb2.dir/testCXXCompiler.cxx.obj
-	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @C:\Users\mitch\AppData\Local\Temp\nmA35F.tmp
+Run Build Command:"nmake" "/NOLOGO" "cmTC_410c0\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\BIN\amd64\nmake.exe" -f CMakeFiles\cmTC_410c0.dir\build.make /nologo -L                  CMakeFiles\cmTC_410c0.dir\build
+Building CXX object CMakeFiles/cmTC_410c0.dir/testCXXCompiler.cxx.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @C:\Users\mitch\AppData\Local\Temp\nmF272.tmp
 testCXXCompiler.cxx
-Linking CXX executable cmTC_d8cb2.exe
-	"C:\Program Files\CMake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_d8cb2.dir --manifests  -- C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\link.exe /nologo @CMakeFiles\cmTC_d8cb2.dir\objects1.rsp @C:\Users\mitch\AppData\Local\Temp\nmA45A.tmp
+Linking CXX executable cmTC_410c0.exe
+	"C:\Program Files\CMake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_410c0.dir --manifests  -- C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\link.exe /nologo @CMakeFiles\cmTC_410c0.dir\objects1.rsp @C:\Users\mitch\AppData\Local\Temp\nmF3DA.tmp
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: F:/Code/C_tests/BankManagementSystem/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"nmake" "/NOLOGO" "cmTC_d49cd\fast"
-	"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\BIN\amd64\nmake.exe" -f CMakeFiles\cmTC_d49cd.dir\build.make /nologo -L                  CMakeFiles\cmTC_d49cd.dir\build
-Building CXX object CMakeFiles/cmTC_d49cd.dir/CMakeCXXCompilerABI.cpp.obj
-	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @C:\Users\mitch\AppData\Local\Temp\nmA7B5.tmp
+Run Build Command:"nmake" "/NOLOGO" "cmTC_6bc47\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\BIN\amd64\nmake.exe" -f CMakeFiles\cmTC_6bc47.dir\build.make /nologo -L                  CMakeFiles\cmTC_6bc47.dir\build
+Building CXX object CMakeFiles/cmTC_6bc47.dir/CMakeCXXCompilerABI.cpp.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @C:\Users\mitch\AppData\Local\Temp\nmF80F.tmp
 CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_d49cd.exe
-	"C:\Program Files\CMake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_d49cd.dir --manifests  -- C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\link.exe /nologo @CMakeFiles\cmTC_d49cd.dir\objects1.rsp @C:\Users\mitch\AppData\Local\Temp\nmA8BF.tmp
+Linking CXX executable cmTC_6bc47.exe
+	"C:\Program Files\CMake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_6bc47.dir --manifests  -- C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\link.exe /nologo @CMakeFiles\cmTC_6bc47.dir\objects1.rsp @C:\Users\mitch\AppData\Local\Temp\nmF968.tmp
 
 
 
@@ -100,13 +100,13 @@ Linking CXX executable cmTC_d49cd.exe
 Detecting CXX [] compiler features compiled with the following output:
 Change Dir: F:/Code/C_tests/BankManagementSystem/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"nmake" "/NOLOGO" "cmTC_c7bc9\fast"
-	"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\BIN\amd64\nmake.exe" -f CMakeFiles\cmTC_c7bc9.dir\build.make /nologo -L                  CMakeFiles\cmTC_c7bc9.dir\build
-Building CXX object CMakeFiles/cmTC_c7bc9.dir/feature_tests.cxx.obj
-	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @C:\Users\mitch\AppData\Local\Temp\nmAC78.tmp
+Run Build Command:"nmake" "/NOLOGO" "cmTC_1bfc4\fast"
+	"C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\BIN\amd64\nmake.exe" -f CMakeFiles\cmTC_1bfc4.dir\build.make /nologo -L                  CMakeFiles\cmTC_1bfc4.dir\build
+Building CXX object CMakeFiles/cmTC_1bfc4.dir/feature_tests.cxx.obj
+	C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\cl.exe @C:\Users\mitch\AppData\Local\Temp\nmFE39.tmp
 feature_tests.cxx
-Linking CXX executable cmTC_c7bc9.exe
-	"C:\Program Files\CMake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_c7bc9.dir --manifests  -- C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\link.exe /nologo @CMakeFiles\cmTC_c7bc9.dir\objects1.rsp @C:\Users\mitch\AppData\Local\Temp\nmAD73.tmp
+Linking CXX executable cmTC_1bfc4.exe
+	"C:\Program Files\CMake\bin\cmake.exe" -E vs_link_exe --intdir=CMakeFiles\cmTC_1bfc4.dir --manifests  -- C:\PROGRA~2\MICROS~1.0\VC\bin\amd64\link.exe /nologo @CMakeFiles\cmTC_1bfc4.dir\objects1.rsp @C:\Users\mitch\AppData\Local\Temp\nmFF92.tmp
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers

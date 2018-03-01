@@ -12,12 +12,12 @@ int main(int argc, char** argv)
     int rc;
 
     char* cols_vals[] = {
-        "Name", "Matt",
-        "Phone", "7651238745",
-        "Address", "34 W Test St."
+        "Name", "'Matt'",
+        "PhoneNumber", "'7651238745'",
+        "Address", "'34 W Test St'"
     };
 
-    db_alter_customer(1, cols_vals, 3, &rc);
+    db_create_customer(cols_vals, 6, &rc);
 
     Server* server = server_init(DEFAULT_IP, DEFAULT_PORT, &status);
 
@@ -38,7 +38,7 @@ int main(int argc, char** argv)
             server_send(client, "I got your message, bruh..", &status);
 
             if (client != NULL)
-                closesocket(client);
+                server_cleanup_c(client);
         }
 
         server_cleanup(server, &status);

@@ -79,7 +79,8 @@ Server* server_init(const char* ip, const char* port, int* status)
         if (*status == SOCKET_ERROR)
         {
             *status = WSAGetLastError();
-            server_cleanup_c(client);
+            int close_stat;
+            server_cleanup(server, &close_stat);
             return NULL;
         }
 
