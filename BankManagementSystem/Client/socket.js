@@ -15,12 +15,7 @@ function encode_data(data)
             tempBinStr = "0" + tempBinStr;
         }
 
-        console.log(tempBinStr);
-
         tempBinStr = flipBitsInBinStr(tempBinStr);
-
-        console.log(tempBinStr);
-
         encodedData += tempBinStr;
     }
 

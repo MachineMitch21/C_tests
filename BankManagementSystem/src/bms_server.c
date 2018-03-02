@@ -14,6 +14,9 @@ struct Client_s {
     #endif // _WIN32
 };
 
+/*
+ *  Take in a string of binary 1s and 0s and toggle each bit
+ */
 void flipBinStr(char* str)
 {
     size_t len = strlen(str);
@@ -27,9 +30,12 @@ void flipBinStr(char* str)
 
 void decode_netMsg(char* msg)
 {
+    // Toggle the bits to the correct state
     flipBinStr(msg);
     size_t len = strlen(msg);
 
+    // The decoded message will be n / 8 size of
+    // the incoming message because we are looking for each byte (8 bits)
     size_t new_msg_len = (len / 8);
 
     char* new_msg = (char*) malloc(sizeof(char) * new_msg_len + 1);
@@ -39,16 +45,24 @@ void decode_netMsg(char* msg)
     for (msg_index = 0, new_msg_index = 0; msg_index < len; msg_index += 8, new_msg_index++)
     {
         char temp[9];
+
+        // Pull 8 bits starting at msg_index
+        // and store in the temp char array
         memmove(temp, &msg[msg_index], 8);
+
+        // Null terminate temp for safety
         temp[8] = '\0';
+
+        // Get the ascii character that equals the binary string in temp
         char c = strtol(temp, 0, 2);
+
+        // Take the character we just found and store it in new_msg at new_msg_index
         memset(&new_msg[new_msg_index], c, 1);
     }
 
+    // Copy the contents of new_msg into msg and cleanup
     memset(&new_msg[new_msg_len], '\0', 1);
-
     strcpy(msg, new_msg);
-
     free(new_msg);
 }
 
