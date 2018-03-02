@@ -14,6 +14,44 @@ struct Client_s {
     #endif // _WIN32
 };
 
+void flipBinStr(char* str)
+{
+    size_t len = strlen(str);
+
+    int i;
+    for (i = 0; i < len; i++)
+    {
+        str[i] = (str[i] == '1' ? '0' : '1');
+    }
+}
+
+void decode_netMsg(char* msg)
+{
+    flipBinStr(msg);
+    size_t len = strlen(msg);
+
+    size_t new_msg_len = (len / 8);
+
+    char* new_msg = (char*) malloc(sizeof(char) * new_msg_len + 1);
+
+    int msg_index;
+    int new_msg_index;
+    for (msg_index = 0, new_msg_index = 0; msg_index < len; msg_index += 8, new_msg_index++)
+    {
+        char temp[9];
+        memmove(temp, &msg[msg_index], 8);
+        temp[8] = '\0';
+        char c = strtol(temp, 0, 2);
+        memset(&new_msg[new_msg_index], c, 1);
+    }
+
+    memset(&new_msg[new_msg_len], '\0', 1);
+
+    strcpy(msg, new_msg);
+
+    free(new_msg);
+}
+
 Server* server_init(const char* ip, const char* port, int* status)
 {
     // Allocate space for Server regardless of OS
@@ -126,6 +164,10 @@ void server_receive(Client* client, NetData* netData, int* status)
         int recResult;
         recResult = recv(client->socket, netData->data, DEFAULT_BUFFER_SIZE, 0);
         netData->size = recResult;
+
+        printf("\n\nNet data: %s\n\n", netData->data);
+
+        decode_netMsg(netData->data);
 
         if (recResult > 0)
         {

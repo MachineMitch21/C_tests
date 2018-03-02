@@ -23,7 +23,14 @@
 
         form.addEventListener('submit', function(e){
             e.preventDefault();
-            sendData('0,' + iUserName.value + ':' + iPassword.value + '!');
+
+            var data = '0,' + iUserName.value + ':' + iPassword.value + '!';
+
+            data = encode_data(data);
+
+            console.log(data);
+
+            sendData(data);
         });
     </script>
 

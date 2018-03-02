@@ -41,15 +41,23 @@ struct _NetMessage {
 
 NetMessage* parse_netMsg(char* msg)
 {
+    /*  TODO
+        Error check the msg string to make sure it is formatted correctly
+    */
+
     NetMessage* net_msg = (NetMessage*) malloc(sizeof(NetMessage));
 
     net_msg->_actionID = (char*) malloc(sizeof(char) * (ACTIONID_SIZE));
     net_msg->_actionStr = (char*) malloc(sizeof(char) * (ACTIONSTR_SIZE));
 
+    // Make sure we've emptied the contents of the memory here
     memset(net_msg->_actionID, 0, ACTIONID_SIZE);
     memset(net_msg->_actionStr, 0, ACTIONSTR_SIZE);
 
+    // Get the ActionID from the message
     net_msg->_actionID  = strtok(msg, ACTIONID_DELIMETER);
+
+    // Get the ActionStr from the message
     net_msg->_actionStr = strtok(NULL, ACTIONSTR_DELIMETER);
 
     return net_msg;

@@ -11,6 +11,8 @@
 ../include/bms/bms_server.h
 stdio.h
 -
+stdlib.h
+-
 errno.h
 -
 memory.h
@@ -56,6 +58,8 @@ stdio.h
 string.h
 -
 stdlib.h
+-
+bms/list.h
 -
 
 ../include/sqlite3/sqlite3.h

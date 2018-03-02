@@ -3,6 +3,7 @@
 #define __BMS_SERVER_H__
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <errno.h>
 #include <memory.h>
 
@@ -19,7 +20,7 @@
 #include <arpa/inet.h>
 #endif // __unix__
 
-#define DEFAULT_BUFFER_SIZE 1024
+#define DEFAULT_BUFFER_SIZE 16384
 #define DEFAULT_IP          "127.0.0.1"
 #define DEFAULT_PORT        "27015"
 

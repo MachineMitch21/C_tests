@@ -3,6 +3,15 @@
 #include <stdio.h>
 #include <string.h>
 
+void printbincharpad(char c)
+{
+    for (int i = 7; i >= 0; --i)
+    {
+        putchar( (c & (1 << i)) ? '1' : '0' );
+    }
+    putchar('\n');
+}
+
 int main(int argc, char** argv)
 {
     int number = 255;
@@ -47,5 +56,11 @@ int main(int argc, char** argv)
 
     printf("%c >> 2 = %c\n", c, cshr_result);
     printf("%d >> 2 = %d\n\n", number, ishr_result);
+
+    char val1 = 'a';
+
+    printbincharpad(val1);
+    printbincharpad(~val1);
+
     return 0;
 }
