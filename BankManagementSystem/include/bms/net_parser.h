@@ -2,6 +2,8 @@
 #ifndef __NET_PARSER_H__
 #define __NET_PARSER_H__
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <string.h>
 #include <stdlib.h>
 #include <bms/list.h>

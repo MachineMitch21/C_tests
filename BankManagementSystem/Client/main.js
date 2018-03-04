@@ -18,7 +18,8 @@ app.on('ready', function() {
     mainWindow = new BrowserWindow({
         width:  300,
         height: 250,
-        title:  'BMS Sign In'
+        title:  'BMS Sign In',
+        icon:   __dirname + 'icons/bms-icon.ico'
     });
 
     mainWindow.loadURL(url.format({

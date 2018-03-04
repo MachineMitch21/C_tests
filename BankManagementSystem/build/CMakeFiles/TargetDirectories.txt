@@ -1,3 +1,0 @@
-F:/Code/C_tests/BankManagementSystem/build/CMakeFiles/bms.dir
-F:/Code/C_tests/BankManagementSystem/build/CMakeFiles/edit_cache.dir
-F:/Code/C_tests/BankManagementSystem/build/CMakeFiles/rebuild_cache.dir

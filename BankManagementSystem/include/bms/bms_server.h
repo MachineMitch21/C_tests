@@ -22,7 +22,14 @@
 
 #define DEFAULT_BUFFER_SIZE 16384
 #define DEFAULT_IP          "127.0.0.1"
-#define DEFAULT_PORT        "27015"
+
+#ifdef __unix__
+    #define DEFAULT_PORT        27015
+#endif // __unix__
+
+#ifdef _WIN32
+    #define DEFAULT_PORT        "27015"
+#endif // _WIN32
 
 typedef struct {
     char    data[DEFAULT_BUFFER_SIZE];

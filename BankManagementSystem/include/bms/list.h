@@ -17,14 +17,6 @@ typedef int bool;
 typedef struct Node_s Node;
 typedef struct List_s List;
 
-typedef struct DummyStruct {
-    double      test_double;
-    int         test_int;
-    const char* test_str;
-} DummyStruct;
-
-
-
 // ------------------------------------
 // List functions
 List* list_new();

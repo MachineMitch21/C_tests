@@ -54,3 +54,12 @@ dkms.conf
 # Cmake build directory
 build/
 Build/
+
+# Electron && Node.js
+bms-client-linux-arm64/
+bms-client-linux-armv7l/
+bms-client-linux-ia32/
+bms-client-linux-mips64el/
+bms-client-linux-x64/
+bms-client-win32-ia32/
+bms-client-win32-x64/

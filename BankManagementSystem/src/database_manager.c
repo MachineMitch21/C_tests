@@ -40,7 +40,7 @@ void db_create_customer(char** cols_vals, size_t num_elements, int* result_code)
     sqlite3* db;
     char* errMsg = NULL;
 
-    *result_code = sqlite3_open("../bms.db", &db);
+    *result_code = sqlite3_open("bms.db", &db);
 
     if (*result_code != SQLITE_OK)
     {

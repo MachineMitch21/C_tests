@@ -1,17 +1,35 @@
 #include <bms/bms_server.h>
 
+#ifdef __unix__
+    typedef struct {
+        int socket_fd;
+        struct sockaddr_in addr_info;
+    } UnixSocket;
+#endif // __unix__
+
 struct Server_s {
     #ifdef _WIN32
         SOCKET              socket;
         struct addrinfo*    result;
         struct addrinfo     hints;
     #endif // _WIN32
+
+    #ifdef __unix__
+        int                 socket_fd;
+        struct sockaddr_in  addr_info;
+    #endif // __unix__
 };
 
 struct Client_s {
     #ifdef _WIN32
         SOCKET socket;
     #endif // _WIN32
+
+    #ifdef __unix__
+        int                 socket_fd;
+        struct sockaddr_in  addr_info;
+        int                 addr_len;
+    #endif // __unix__
 };
 
 /*
@@ -60,8 +78,10 @@ void decode_netMsg(char* msg)
         memset(&new_msg[new_msg_index], c, 1);
     }
 
-    // Copy the contents of new_msg into msg and cleanup
+    // Set the final character in new_msg as NUL terminator
     memset(&new_msg[new_msg_len], '\0', 1);
+
+    // Copy the contents of new_msg into msg and cleanup
     strcpy(msg, new_msg);
     free(new_msg);
 }
@@ -70,6 +90,33 @@ Server* server_init(const char* ip, const char* port, int* status)
 {
     // Allocate space for Server regardless of OS
     Server* server = (Server*) malloc(sizeof(Server));
+
+    #ifdef __unix__
+
+        if ( (server->socket_fd = socket(AF_INET, SOCK_STREAM, )) < 0)
+        {
+            fprintf(stderr, "Error creating socket\n")
+            return NULL;
+        }
+
+        bzero(&server->addr_info, sizeof(server->addr_info));
+        server->addr_info->sin_family       = AF_INET;
+        server->addr_info->sin_port         = htons(DEFAULT_PORT);
+        server->addr_info->sin_addr.s_addr  = INADDR_ANY;
+
+        if ( bind(server->socket_fd, (struct sockaddr_in*)&server->addr_info, sizeof(server->addr_info)) != 0)
+        {
+            fprintf(stderr, "Error binding socket\n");
+            return NULL;
+        }
+
+        if (listen(server->socket_fd, 20) != 0)
+        {
+            fprintf(stderr, "Error initializing %d as listening socket\n", server->socket_fd);
+            return NULL;
+        }
+
+    #endif // __unix__
 
     #ifdef _WIN32
         server->socket = INVALID_SOCKET;
@@ -149,6 +196,15 @@ Client* server_acceptConn(Server* server, int* status)
 
     Client* client = (Client*) malloc(sizeof(Client));
 
+    #ifdef __unix__
+
+        client->addr_len = sizeof(client->addr_info);
+        client->socket_fd = accept(client->socket_fd, (struct sockaddr*)&client->addr_info, client->addr_len)
+
+        fprintf(stdout, "%s:%d connected\n", inet_ntoa(client->addr_info.sin_addr), ntohs(client->addr_info.sin_port));
+
+    #endif // __unix__
+
     #ifdef _WIN32
 
         client->socket = accept(server->socket, NULL, NULL);
@@ -172,26 +228,25 @@ void server_receive(Client* client, NetData* netData, int* status)
 {
     // We need to make sure we don't have any garbage bytes in netData->data
     memset(netData->data, 0, DEFAULT_BUFFER_SIZE);
+    int recResult;
+
+    #ifdef __unix__
+
+        recResult = recv(client->socket_fd, netData->data, DEFAULT_BUFFER_SIZE, 0);
+
+    #endif // __unix__
 
     #ifdef _WIN32
 
-        int recResult;
+
         recResult = recv(client->socket, netData->data, DEFAULT_BUFFER_SIZE, 0);
         netData->size = recResult;
 
-        printf("\n\nNet data: %s\n\n", netData->data);
-
-        decode_netMsg(netData->data);
-
-        if (recResult > 0)
-        {
-            printf("Bytes received: %d\n", recResult);
-        }
-        else if (recResult == 0)
+        if (recResult == 0)
         {
             printf("Closing connection..\n");
         }
-        else
+        else if ( !(recResult > 0) )
         {
             *status = WSAGetLastError();
             server_cleanup_c(client);
@@ -201,26 +256,50 @@ void server_receive(Client* client, NetData* netData, int* status)
 
     #endif // _WIN32
 
+    if (recResult > 0)
+    {
+        printf("Bytes received: %d\n", recResult);
+        decode_netMsg(netData->data);
+    }
+
     *status = 0;
 }
 
 void server_send(Client* client, char* msg, int* status)
 {
-    *status = send(client->socket, msg, strlen(msg), 0);
 
-    if (*status == SOCKET_ERROR)
-    {
-        *status = WSAGetLastError();
-        server_cleanup_c(client);
-        WSACleanup();
-        return;
-    }
+    #ifdef __unix__
+
+        *status = send(client->socket_fd, msg, strlen(msg), 0);
+
+    #endif
+
+    #ifdef _WIN32
+
+        *status = send(client->socket, msg, strlen(msg), 0);
+
+        if (*status == SOCKET_ERROR)
+        {
+            *status = WSAGetLastError();
+            server_cleanup_c(client);
+            WSACleanup();
+            return;
+        }
+
+    #endif // _WIN32
 
     printf("Bytes sent: %d\n", *status);
 }
 
 void server_cleanup(Server* server, int* status)
 {
+
+    #ifdef __unix__
+
+        close(server->socket_fd);
+
+    #endif // __unix__
+
     #ifdef _WIN32
 
         closesocket(server->socket);
@@ -234,6 +313,19 @@ void server_cleanup(Server* server, int* status)
 
 void server_cleanup_c(Client* client)
 {
-    closesocket(client->socket);
+
+    #ifdef __unix__
+
+        close(client->socket_fd);
+
+    #endif // __unix__
+
+    #ifdef _WIN32
+
+        closesocket(client->socket);
+        WSACleanup();
+
+    #endif // _WIN32
+
     free(client);
 }

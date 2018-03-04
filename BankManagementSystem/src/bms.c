@@ -11,13 +11,13 @@ int main(int argc, char** argv)
 
     int rc;
 
-    char* cols_vals[] = {
-        "Name", "'Matt'",
-        "PhoneNumber", "'7651238745'",
-        "Address", "'34 W Test St'"
-    };
-
-    db_create_customer(cols_vals, 6, &rc);
+    // char* cols_vals[] = {
+    //     "Name", "'Matt'",
+    //     "PhoneNumber", "'7651238745'",
+    //     "Address", "'34 W Test St'"
+    // };
+    //
+    // db_create_customer(cols_vals, 6, &rc);
 
     Server* server = server_init(DEFAULT_IP, DEFAULT_PORT, &status);
 
