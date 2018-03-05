@@ -35,6 +35,7 @@ int main(int argc, char** argv)
             NetMessage* net_msg = parse_netMsg(net_data.data);
             print_netMsg(net_msg);
             cleanup_netMessage(net_msg);
+
             server_send(client, "I got your message, bruh..", &status);
 
             if (client != NULL)
@@ -45,6 +46,7 @@ int main(int argc, char** argv)
     }
     else
     {
+        printf("\nThe server has failed to initialize, Error Code {%d}\n", status);
         exit(-1);
     }
     return 0;

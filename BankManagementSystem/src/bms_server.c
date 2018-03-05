@@ -144,7 +144,6 @@ Server* server_init(const char* ip, const char* port, int* status)
         if (*status != 0)
         {
             free(server);
-            WSACleanup();
             return NULL;
         }
 
@@ -155,7 +154,6 @@ Server* server_init(const char* ip, const char* port, int* status)
             *status = WSAGetLastError();
             freeaddrinfo(server->result);
             free(server);
-            WSACleanup();
             return NULL;
         }
 
@@ -167,7 +165,6 @@ Server* server_init(const char* ip, const char* port, int* status)
             freeaddrinfo(server->result);
             closesocket(server->socket);
             free(server);
-            WSACleanup();
             return NULL;
         }
 
@@ -179,15 +176,15 @@ Server* server_init(const char* ip, const char* port, int* status)
         {
             *status = WSAGetLastError();
             int close_stat;
-            server_cleanup(server, &close_stat);
             return NULL;
         }
 
         *status = 0;
 
-        return server;
 
     #endif // _WIN32
+
+    return server;
 }
 
 Client* server_acceptConn(Server* server, int* status)
@@ -196,30 +193,38 @@ Client* server_acceptConn(Server* server, int* status)
 
     Client* client = (Client*) malloc(sizeof(Client));
 
-    #ifdef __unix__
 
-        client->addr_len = sizeof(client->addr_info);
-        client->socket_fd = accept(client->socket_fd, (struct sockaddr*)&client->addr_info, client->addr_len)
+    if (client != NULL)
+    {
+        #ifdef __unix__
 
-        fprintf(stdout, "%s:%d connected\n", inet_ntoa(client->addr_info.sin_addr), ntohs(client->addr_info.sin_port));
+            client->addr_len = sizeof(client->addr_info);
+            client->socket_fd = accept(client->socket_fd, (struct sockaddr*)&client->addr_info, client->addr_len)
 
-    #endif // __unix__
+            fprintf(stdout, "%s:%d connected\n", inet_ntoa(client->addr_info.sin_addr), ntohs(client->addr_info.sin_port));
 
-    #ifdef _WIN32
+        #endif // __unix__
 
-        client->socket = accept(server->socket, NULL, NULL);
+        #ifdef _WIN32
 
-        if (client->socket == INVALID_SOCKET)
-        {
-            *status = WSAGetLastError();
-            server_cleanup_c(client);
-            WSACleanup();
-            return NULL;
-        }
+            client->socket = accept(server->socket, NULL, NULL);
 
-    #endif // _WIN32
+            if (client->socket == INVALID_SOCKET)
+            {
+                *status = WSAGetLastError();
+                return NULL;
+            }
 
-    status = 0;
+        #endif // _WIN32
+
+        status = 0;
+
+    }
+    else
+    {
+        fprintf(stderr, "Client memory could not be allocated..\n");
+        return NULL;
+    }
 
     return client;
 }
@@ -234,33 +239,36 @@ void server_receive(Client* client, NetData* netData, int* status)
 
         recResult = recv(client->socket_fd, netData->data, DEFAULT_BUFFER_SIZE, 0);
 
+        if (recResult > 0)
+        {
+            printf("Bytes received: %d\n", recResult);
+            decode_netMsg(netData->data);
+        }
+
     #endif // __unix__
 
     #ifdef _WIN32
 
-
         recResult = recv(client->socket, netData->data, DEFAULT_BUFFER_SIZE, 0);
         netData->size = recResult;
 
+        if (recResult > 0)
+        {
+            printf("Bytes received: %d\n", recResult);
+            decode_netMsg(netData->data);
+        }
         if (recResult == 0)
         {
             printf("Closing connection..\n");
         }
-        else if ( !(recResult > 0) )
+        else
         {
             *status = WSAGetLastError();
-            server_cleanup_c(client);
-            WSACleanup();
+            printf("Failed to receive bytes with status: %d\n", *status);
             return;
         }
 
     #endif // _WIN32
-
-    if (recResult > 0)
-    {
-        printf("Bytes received: %d\n", recResult);
-        decode_netMsg(netData->data);
-    }
 
     *status = 0;
 }
@@ -281,8 +289,7 @@ void server_send(Client* client, char* msg, int* status)
         if (*status == SOCKET_ERROR)
         {
             *status = WSAGetLastError();
-            server_cleanup_c(client);
-            WSACleanup();
+            printf("Failed to send bytes with status: %d\n", *status);
             return;
         }
 
@@ -323,7 +330,6 @@ void server_cleanup_c(Client* client)
     #ifdef _WIN32
 
         closesocket(client->socket);
-        WSACleanup();
 
     #endif // _WIN32
 

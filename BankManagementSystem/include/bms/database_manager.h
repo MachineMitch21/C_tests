@@ -8,6 +8,8 @@
 #include <bms/customer.h>
 #include <stdio.h>
 
+char**      db_convert_action_strs_list(List* actionStrsList);
+
 void        db_print_sqlite3_version();
 void        db_open(sqlite3* db, int* result_code);
 void        db_close(sqlite3* db);
