@@ -48,8 +48,10 @@ void flipBinStr(char* str)
 
 void decode_netMsg(char* msg)
 {
+    printf("\nNet Message encoded: %s\n\n", msg);
     // Toggle the bits to the correct state
     flipBinStr(msg);
+    printf("\nNet Message decoded: %s\n\n", msg);
     size_t len = strlen(msg);
 
     // The decoded message will be n / 8 size of
@@ -83,6 +85,7 @@ void decode_netMsg(char* msg)
 
     // Copy the contents of new_msg into msg and cleanup
     strcpy(msg, new_msg);
+    printf("The decoded message is: %s\n\n", msg);
     free(new_msg);
 }
 

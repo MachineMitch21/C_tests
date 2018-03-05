@@ -62,5 +62,11 @@ int main(int argc, char** argv)
     printbincharpad(val1);
     printbincharpad(~val1);
 
+    val1 = val1 ^ (1 << 2);
+
+    printf("%c\n", val1);
+
+    printbincharpad(val1);
+
     return 0;
 }
