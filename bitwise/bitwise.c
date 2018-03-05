@@ -62,7 +62,10 @@ int main(int argc, char** argv)
     printbincharpad(val1);
     printbincharpad(~val1);
 
-    val1 = val1 ^ (1 << 2);
+    for (int i = 0; i < 8; i++)
+    {
+        val1 = val1 ^ (1 << i);
+    }
 
     printf("%c\n", val1);
 

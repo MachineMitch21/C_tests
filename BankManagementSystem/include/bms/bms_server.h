@@ -20,7 +20,7 @@
 #include <arpa/inet.h>
 #endif // __unix__
 
-#define DEFAULT_BUFFER_SIZE 16384
+#define DEFAULT_BUFFER_SIZE 8192
 #define DEFAULT_IP          "127.0.0.1"
 
 #ifdef __unix__

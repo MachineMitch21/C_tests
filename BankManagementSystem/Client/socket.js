@@ -4,20 +4,26 @@ var net = require('net');
 
 function encode_data(data)
 {
+    console.log(data);
     var encodedData = "";
+
+    var dataArr = data.split("");
 
     for (var i = 0; i < data.length; i++)
     {
-        var tempBinStr = data.charCodeAt(i).toString(2);
+        var charCode = dataArr[i].charCodeAt(0);
 
-        while (tempBinStr.length < 8)
+        for (var j = 0; j < 7; j++)
         {
-            tempBinStr = "0" + tempBinStr;
+            charCode ^= (1 << j);
         }
-
-        tempBinStr = flipBitsInBinStr(tempBinStr);
-        encodedData += tempBinStr;
+        dataArr[i] = String.fromCharCode(charCode);
+        console.log(charCode);
     }
+
+    encodedData = dataArr.join("");
+
+    console.log(encodedData);
 
     return encodedData;
 }
