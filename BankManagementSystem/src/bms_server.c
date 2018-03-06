@@ -1,12 +1,5 @@
 #include <bms/bms_server.h>
 
-#ifdef __unix__
-    typedef struct {
-        int socket_fd;
-        struct sockaddr_in addr_info;
-    } UnixSocket;
-#endif // __unix__
-
 struct Server_s {
     #ifdef _WIN32
         SOCKET              socket;
