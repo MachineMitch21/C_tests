@@ -1,7 +1,8 @@
 
 #include <bms/database_manager.h>
 
-static int record_callback(void *NotUsed, int argc, char **argv, char **azColName) {
+static int record_callback(void *NotUsed, int argc, char **argv, char **azColName)
+{
    int i;
    for(i = 0; i<argc; i++) {
       printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
@@ -54,7 +55,7 @@ void db_create_customer(char** cols_vals, size_t num_elements, int* result_code)
 
     if (*result_code == SQLITE_OK)
     {
-        char sql_stat[255] = "INSERT INTO customers";
+        char sql_stmt[255] = "INSERT INTO customers";
 
         char columns[255] = "(";
         char values[255] = "VALUES (";
@@ -64,10 +65,6 @@ void db_create_customer(char** cols_vals, size_t num_elements, int* result_code)
         {
             strcat(columns, cols_vals[i]);
             strcat(values, cols_vals[i + 1]);
-
-            printf("%d\n", i);
-            printf("%s\n", columns);
-            printf("%s\n", values);
 
             if (i != (num_elements - 2))
             {
@@ -79,12 +76,10 @@ void db_create_customer(char** cols_vals, size_t num_elements, int* result_code)
         strcat(columns, ") ");
         strcat(values, ");");
 
-        strcat(sql_stat, columns);
-        strcat(sql_stat, values);
+        strcat(sql_stmt, columns);
+        strcat(sql_stmt, values);
 
-        printf("%s\n", sql_stat);
-
-        *result_code = sqlite3_exec(db, sql_stat, record_callback, 0, &errMsg);
+        *result_code = sqlite3_exec(db, sql_stmt, record_callback, 0, &errMsg);
 
         if (*result_code != SQLITE_OK)
         {
@@ -131,6 +126,11 @@ void    db_create_profile(int customer_id, char* uName, char* pWord, int* result
 }
 
 void    db_alter_profile(int customer_id, char** cols_vals, int* result_code)
+{
+
+}
+
+int     db_verify_login(char* uName, char* pWord, int* result_code)
 {
 
 }

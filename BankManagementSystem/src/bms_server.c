@@ -221,7 +221,7 @@ void server_receive(Client* client, NetData* netData, int* status)
             printf("Bytes received: %d\n", recResult);
             decode_netMsg(netData->data);
         }
-        if (recResult == 0)
+        else if (recResult == 0)
         {
             printf("Closing connection..\n");
         }
