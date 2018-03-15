@@ -13,10 +13,10 @@ typedef struct {
     int action_result;
 } ErrorStruct;
 
-#include <string.h>
-#include <stdlib.h>
 #include <bms/list.h>
 #include <bms/database_manager.h>
+#include <string.h>
+#include <stdlib.h>
 
 typedef struct _NetMessage NetMessage;
 

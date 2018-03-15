@@ -28,11 +28,14 @@
 
             data = encode_data(data);
 
-            customer_data = "1,Name:'Mitch':PhoneNumber:7655703684:Address:'2065 South State Road 3'";
-            console.log(data);
+            var modify_data = "2,Mitch:Name:'FuckHead'!";
 
-            customer_data = encode_data(customer_data);
-            sendData(customer_data);
+            var delete_data = "3,56";
+
+            modify_data = encode_data(modify_data);
+            delete_data = encode_data(delete_data);
+
+            sendData(delete_data);
         });
     </script>
 

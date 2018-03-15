@@ -9,10 +9,10 @@
 // MACROS defining actionID's
 #define CUSTOMER_LOGIN          0
 #define CREATE_CUSTOMER         1
-#define ALTER_CUSTOMER          2
+#define MODIFY_CUSTOMER         2
 #define DELETE_CUSTOMER         3
 #define CREATE_ACCOUNT          4
-#define ALTER_ACCOUNT           5
+#define MODIFY_ACCOUNT          5
 #define DELETE_ACCOUNT          6
 #define CUSTOMER_CREATE_PROFILE 7
 #define CUSTOMER_DELETE_PROFILE 8
@@ -98,9 +98,44 @@ void net_create_customer(List* actionStrsList, ErrorStruct* err_struct)
     db_create_customer(cols_vals, size, &err_struct->sql_stat);
 }
 
-void net_alter_customer(List* actionStrsList, ErrorStruct* err_struct)
+void net_modify_customer(List* actionStrsList, ErrorStruct* err_struct)
 {
+    Node* node = list_get_element(actionStrsList, 0);
+
+    int uName_len   = strlen((char*) node_data(node));
+    char* uName     = malloc(sizeof(char) * uName_len + 1);
+
+    if (node != NULL)
+    {
+        strcpy(uName, (char*) node_data(node));
+        list_remove_n(actionStrsList, node);
+    }
+
     int size = list_size(actionStrsList);
+
+    char** cols_vals = convert_action_strs_list(actionStrsList);
+
+    err_struct->action_result = 0;
+    db_modify_customer(56, cols_vals, size, &err_struct->sql_stat);
+
+    free(uName);
+}
+
+void net_delete_customer(List* actionStrsList, ErrorStruct* err_struct)
+{
+    Node* node = list_get_element(actionStrsList, 0);
+
+    char* id_str = malloc(sizeof(char) * strlen((char*) node_data(node)));
+
+    if (node != NULL)
+    {
+        strcpy(id_str, (char*) node_data(node));
+    }
+
+    err_struct->action_result = 0;
+    db_delete_customer(strtol(id_str, NULL, 10), err_struct->sql_stat);
+
+    free(id_str);
 }
 
 ErrorStruct pass_net_msg_to_db(NetMessage* net_msg)
@@ -129,6 +164,16 @@ ErrorStruct pass_net_msg_to_db(NetMessage* net_msg)
     else if (actionID == CREATE_CUSTOMER)
     {
         net_create_customer(actionStrsList, &err_struct);
+        return err_struct;
+    }
+    else if (actionID == MODIFY_CUSTOMER)
+    {
+        net_modify_customer(actionStrsList, &err_struct);
+        return err_struct;
+    }
+    else if (actionID == DELETE_CUSTOMER)
+    {
+        net_delete_customer(actionStrsList, &err_struct);
         return err_struct;
     }
 }

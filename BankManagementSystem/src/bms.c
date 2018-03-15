@@ -23,7 +23,6 @@ int main(int argc, char** argv)
 
             server_receive(client, &net_data, &status);
             NetMessage* net_msg = parse_netMsg(net_data.data);
-            print_netMsg(net_msg);
 
             pass_net_msg_to_db(net_msg);
 
