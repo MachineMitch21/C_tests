@@ -15,11 +15,12 @@
 #define MODIFY_ACCOUNT          5
 #define DELETE_ACCOUNT          6
 #define CUSTOMER_CREATE_PROFILE 7
-#define CUSTOMER_DELETE_PROFILE 8
-#define ACCOUNT_TRANSFER        9
-#define GET_CUSTOMER            10
-#define GET_ACCOUNT_LIST        11
-#define GET_ACCOUNT             12
+#define CUSTOMER_MODIFY_PROFILE 8
+#define CUSTOMER_DELETE_PROFILE 9
+#define ACCOUNT_TRANSFER        10
+#define GET_CUSTOMER            11
+#define GET_ACCOUNT_LIST        12
+#define GET_ACCOUNT             13
 
 // Seperates _actionID from _actionStr
 #define ACTIONID_DELIMETER      ","
@@ -77,13 +78,21 @@ char** convert_action_strs_list(List* actionStrsList)
 
 void net_login(List* actionStrsList, ErrorStruct* err_struct)
 {
-    Node* uNameNode = list_get_element(actionStrsList, 0);
-    char* uName     = (char*) node_data(uNameNode);
+    if (list_size(actionStrsList) != 2)
+    {
+        err_struct->sql_stat         = 0;
+        err_struct->action_result    = INVALID_ACTION_STR;
+    }
+    else
+    {
+        Node* uNameNode = list_get_element(actionStrsList, 0);
+        char* uName     = (char*) node_data(uNameNode);
 
-    Node* pWordNode = list_get_element(actionStrsList, 1);
-    char* pWord     = (char*) node_data(pWordNode);
+        Node* pWordNode = list_get_element(actionStrsList, 1);
+        char* pWord     = (char*) node_data(pWordNode);
 
-    err_struct->action_result = db_verify_login(uName, pWord, &err_struct->sql_stat);
+        err_struct->action_result = db_verify_login(uName, pWord, &err_struct->sql_stat);
+    }
 
     return err_struct;
 }
@@ -149,17 +158,8 @@ ErrorStruct pass_net_msg_to_db(NetMessage* net_msg)
 
     if (actionID == CUSTOMER_LOGIN)
     {
-        if (list_size(actionStrsList) != 2)
-        {
-            err_struct.sql_stat         = 0;
-            err_struct.action_result    = INVALID_ACTION_STR;
-            return err_struct;
-        }
-        else
-        {
-            net_login(actionStrsList, &err_struct);
-            return err_struct;
-        }
+        net_login(actionStrsList, &err_struct);
+        return err_struct;
     }
     else if (actionID == CREATE_CUSTOMER)
     {
@@ -174,6 +174,41 @@ ErrorStruct pass_net_msg_to_db(NetMessage* net_msg)
     else if (actionID == DELETE_CUSTOMER)
     {
         net_delete_customer(actionStrsList, &err_struct);
+        return err_struct;
+    }
+    else if (actionID == CREATE_ACCOUNT)
+    {
+
+        return err_struct;
+    }
+    else if (actionID == MODIFY_ACCOUNT)
+    {
+
+        return err_struct;
+    }
+    else if (actionID == DELETE_ACCOUNT)
+    {
+
+        return err_struct;
+    }
+    else if (actionID == CUSTOMER_CREATE_PROFILE)
+    {
+
+        return err_struct;
+    }
+    else if (actionID == CUSTOMER_MODIFY_PROFILE)
+    {
+
+        return err_struct;
+    }
+    else if (actionID == CUSTOMER_DELETE_PROFILE)
+    {
+
+        return err_struct;
+    }
+    else if (actionID == ACCOUNT_TRANSFER)
+    {
+
         return err_struct;
     }
 }

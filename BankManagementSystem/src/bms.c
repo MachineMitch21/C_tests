@@ -4,12 +4,23 @@
 #include <bms/bms_server.h>
 #include <bms/database_manager.h>
 #include <bms/net_parser.h>
+#include <bms/map.h>
 
 int main(int argc, char** argv)
 {
     int status;
 
     int rc;
+
+    Map* map = map_new();
+
+    map_push(map, "Hello", "Goodbye");
+
+    printf("Map size: %d\n", map_size(map));
+
+    printf("Value: %s\n", map_get_value(map, "Hello", &rc));
+
+    map_free(map);
 
     Server* server = server_init(DEFAULT_IP, DEFAULT_PORT, &status);
 
