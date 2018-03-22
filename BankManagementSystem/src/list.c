@@ -16,11 +16,22 @@ struct List_s {
 
 Node* node_new(void* data, size_t size)
 {
-    Node* node      = (Node*) malloc(sizeof(Node));
+    Node* node      = malloc(sizeof(Node));
     node->next      = NULL;
-    node->data      = data;
+	node->data		= malloc(size);
+
+    memmove(node->data, data, size);
 
     return node;
+}
+
+Node* node_copy(Node* node)
+{
+    Node* copy_of_node = malloc(sizeof(Node));
+
+    memmove(node, copy_of_node, sizeof(Node));
+
+    return copy_of_node;
 }
 
 void* node_data(Node* node)
@@ -30,6 +41,7 @@ void* node_data(Node* node)
 
 void free_node(Node* node)
 {
+    free(node->data);
     free(node);
     node = NULL;
 }
@@ -159,7 +171,10 @@ void list_push_back(List* list, Node* node)
         }
 
         current->next = node;
+        list->lastError = LIST_OKAY;
     }
+
+    list->lastError = INDEX_OUT_OF_RANGE;
 }
 
 void list_pop_back(List* list)

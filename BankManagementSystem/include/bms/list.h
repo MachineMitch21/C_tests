@@ -57,6 +57,8 @@ void free_list(List* list);
 // belong to
 Node* node_new(void* data, size_t size);
 
+Node* node_copy(Node* node);
+
 void* node_data(Node* node);
 
 void node_set_data_free(Node* node, void (*data_free)(void*));
