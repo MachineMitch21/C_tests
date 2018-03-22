@@ -19,15 +19,19 @@ VECTOR* vector_new(size_t elementSize)
 
 int     vector_push_back(VECTOR* vector,  void* ptr)
 {
+    // Store a temporay array in case we have allocation errors, we can set
+    // vector->_arr back to its previous state with this temp_arr
     char* temp_arr = malloc(vector->_elementSize * vector->_length);
     memmove(temp_arr, vector->_arr, (vector->_elementSize * vector->_length));
 
+    // increment our length variable and reallocate enough space for one more element
     vector->_length += 1;
     vector->_arr = realloc(vector->_arr, vector->_elementSize * vector->_length);
 
     if (vector->_arr != NULL)
     {
-        memcpy(vector->_arr + (vector->_elementSize * vector->_length) - vector->_elementSize, ptr, vector->_elementSize);
+        // Copy the void* parameter into the last element in vector->_arr
+        memcpy(vector->_arr + (vector->_elementSize * (vector->_length - 1)), ptr, vector->_elementSize);
     }
     else
     {
@@ -41,9 +45,11 @@ int     vector_push_back(VECTOR* vector,  void* ptr)
 
 int     vector_push(VECTOR* vector,  void* ptr)
 {
+    // Store temporary array in case of allocation errors
     char* temp_arr = malloc(vector->_elementSize * vector->_length);
     memmove(temp_arr, vector->_arr, (vector->_elementSize * vector->_length));
 
+    // Inrement length and reallocate enough space for one more element
     vector->_length += 1;
     vector->_arr = realloc(vector->_arr, vector->_elementSize * vector->_length);
 
@@ -51,8 +57,10 @@ int     vector_push(VECTOR* vector,  void* ptr)
     {
         for (int i = vector->_length - 1; i > 0; i--)
         {
+            // Move all the elements to the right in the array
             memmove(vector->_arr + (vector->_elementSize * i), vector->_arr + (vector->_elementSize * (i - 1)), vector->_elementSize);
         }
+        // Copy the contents of the void* parameter into the first element in vector->_arr
         memcpy(vector->_arr + (vector->_elementSize * 0), ptr, vector->_elementSize);
     }
     else
@@ -65,6 +73,7 @@ int     vector_push(VECTOR* vector,  void* ptr)
 
 int     vector_pop_back(VECTOR* vector)
 {
+    // Decrement length and reallocate the array to cut off the last element
     vector->_length -= 1;
     vector->_arr = realloc(vector->_arr, vector->_elementSize * (vector->_length));
 
@@ -80,6 +89,8 @@ int     vector_pop_back(VECTOR* vector)
 
 int     vector_pop(VECTOR* vector)
 {
+    // Decrement length and allocate temporary array so we can edit the array without
+    // screwing up vector->_arr
     vector->_length -= 1;
     char* temp_arr = malloc(vector->_elementSize * (vector->_length));
 
