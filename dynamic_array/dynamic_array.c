@@ -73,7 +73,7 @@ int     vector_push(VECTOR* vector,  void* ptr)
 
 int     vector_pop_back(VECTOR* vector)
 {
-    memset(vector->_arr, 0, vector->_length - 1);
+    memset(vector->_arr + (vector->_elementSize * (vector->_length - 1)), 0, vector->_elementSize);
     vector->_length -= 1;
     vector->_arr = realloc(vector->_arr, vector->_elementSize * (vector->_length));
 
@@ -174,6 +174,7 @@ int     vector_insert(VECTOR* vector, void* ptr, int index)
 
 int     vector_clear(VECTOR* vector)
 {
+    memset(vector->_arr, 0, (vector->_elementSize * vector->_length));
     vector->_length = 0;
     vector->_arr = realloc(vector->_arr, 0);
 
@@ -186,4 +187,9 @@ int     vector_free(VECTOR* vector)
     vector->_length = 0;
     vector = NULL;
     free(vector);
+}
+
+void    vector_print_contents(VECTOR* vector)
+{
+    printf("\nThe contents of the vector are: %s\n", vector->_arr);
 }

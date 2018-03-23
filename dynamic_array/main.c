@@ -71,6 +71,12 @@ int main(int argc, char** argv)
         printf("TestStruct: {%.2f, %d, %s}\n", t_struct._double, t_struct._integer, t_struct._string);
     }
 
+    printf("\n\n");
+
+    vector_print_contents(test_vector);
+
+    printf("\n\n");
+
     vector_pop(test_vector);
     vector_pop_back(test_vector);
 
@@ -85,5 +91,7 @@ int main(int argc, char** argv)
         printf("TestStruct: {%.2f, %d, %s}\n", t_struct._double, t_struct._integer, t_struct._string);
     }
 
+    vector_clear(test_vector);
+    vector_free(test_vector);
     return 0;
 }

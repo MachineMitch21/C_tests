@@ -39,3 +39,5 @@ int     vector_clear(VECTOR* vector);
 
 // Frees the memory taken up by the VECTOR
 int     vector_free(VECTOR* vector);
+
+void    vector_print_contents(VECTOR* vector);
