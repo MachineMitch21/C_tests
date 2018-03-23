@@ -10,9 +10,22 @@ typedef struct {
     char*   _string;
 } TestStruct;
 
-int main(int argc, char** argv)
+void print_test_struct_vector(VECTOR* vector)
+{
+    for (int i = 0; i < vector_size(vector); i++)
+    {
+        TestStruct t_struct;
+        vector_get(vector, &t_struct, i);
+
+        printf("TestStruct: {%.2f, %d, %s}\n", t_struct._double, t_struct._integer, t_struct._string);
+    }
+}
+
+void test_one()
 {
     VECTOR* test_vector = vector_new(sizeof(TestStruct));
+
+    vector_set_print_callback(test_vector, &print_test_struct_vector);
 
     TestStruct test_struct;
     test_struct._double = 8.34;
@@ -35,25 +48,10 @@ int main(int argc, char** argv)
 
     vector_push(test_vector, &test_struct2);
 
-    for (int i = 0; i < vector_size(test_vector); i++)
-    {
-        TestStruct t_struct;
-        vector_get(test_vector, &t_struct, i);
-
-        printf("TestStruct: {%.2f, %d, %s}\n", t_struct._double, t_struct._integer, t_struct._string);
-    }
-
     vector_remove(test_vector, 1);
 
     printf("\nElement %d was removed\n\n", 1);
-
-    for (int i = 0; i < vector_size(test_vector); i++)
-    {
-        TestStruct t_struct;
-        vector_get(test_vector, &t_struct, i);
-
-        printf("TestStruct: {%.2f, %d, %s}\n", t_struct._double, t_struct._integer, t_struct._string);
-    }
+    vector_print(test_vector);
 
     TestStruct test_struct3;
     test_struct3._string = "Fourth example string";
@@ -63,17 +61,9 @@ int main(int argc, char** argv)
 
     printf("\nElement inserted at index {%d}\n\n", 1);
 
-    for (int i = 0; i < vector_size(test_vector); i++)
-    {
-        TestStruct t_struct;
-        vector_get(test_vector, &t_struct, i);
-
-        printf("TestStruct: {%.2f, %d, %s}\n", t_struct._double, t_struct._integer, t_struct._string);
-    }
-
     printf("\n\n");
 
-    vector_print_contents(test_vector);
+    vector_print(test_vector);
 
     printf("\n\n");
 
@@ -83,15 +73,37 @@ int main(int argc, char** argv)
     printf("pop and pop_back called on test_vector\n");
     printf("Attempting to print elements of test_vector if any remain..\n");
 
-    for (int i = 0; i < vector_size(test_vector); i++)
-    {
-        TestStruct t_struct;
-        vector_get(test_vector, &t_struct, i);
-
-        printf("TestStruct: {%.2f, %d, %s}\n", t_struct._double, t_struct._integer, t_struct._string);
-    }
+    vector_print(test_vector);
 
     vector_clear(test_vector);
     vector_free(test_vector);
+}
+
+void test_two()
+{
+    TestStruct test_struct;
+    test_struct._double = 4.32;
+    test_struct._integer = 23;
+    test_struct._string = "A string of characters";
+
+    VECTOR* test_vector1 = vector_new_d(&test_struct, 7, sizeof(TestStruct));
+    VECTOR* test_vector2 = vector_new(sizeof(TestStruct));
+
+    test_struct._double = 128.23;
+    test_struct._string = "Another string of characters";
+    test_struct._integer = 823;
+
+    vector_push_back(test_vector2, &test_struct);
+
+    vector_print(test_vector1);
+
+    vector_swap(test_vector1, test_vector2);
+
+    vector_print(test_vector1);
+}
+
+int main(int argc, char** argv)
+{
+    test_one();
     return 0;
 }

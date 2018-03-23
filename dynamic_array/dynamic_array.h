@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdarg.h>
 #include <memory.h>
 
 typedef struct _VECTOR VECTOR;
@@ -9,6 +10,10 @@ typedef struct _VECTOR VECTOR;
 
 // Allocates space for a VECTOR struct instance on the heap
 VECTOR* vector_new(size_t elementSize);
+
+// Allocates space for a VECTOR struct instance on the heap
+// and sets (howManyElements) number of elements equal to *ptr
+VECTOR* vector_new_d(void* ptr, int howManyElements, size_t elementSize);
 
 // Adds an element to the end of the VECTOR
 int     vector_push_back(VECTOR* vector, void* ptr);
@@ -21,6 +26,9 @@ int     vector_pop_back(VECTOR* vector);
 
 // Removes an element from the front of the VECTOR
 int     vector_pop(VECTOR* vector);
+
+// Swap the elements in the two input vectors
+int     vector_swap(VECTOR* vector1, VECTOR* vector2);
 
 // Retreives the element at (index) position in the VECTOR and stores it in (ptr)
 int     vector_get(VECTOR* vector, void* ptr, int index);
@@ -40,4 +48,4 @@ int     vector_clear(VECTOR* vector);
 // Frees the memory taken up by the VECTOR
 int     vector_free(VECTOR* vector);
 
-void    vector_print_contents(VECTOR* vector);
+void    vector_print(VECTOR* vector);

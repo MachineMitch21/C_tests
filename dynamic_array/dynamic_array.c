@@ -2,9 +2,10 @@
 #include "dynamic_array.h"
 
 struct _VECTOR {
-    char*   _arr;
+    void    (*_print)(VECTOR* vector);
     size_t  _elementSize;
     size_t  _length;
+    char*   _arr;
 };
 
 VECTOR* vector_new(size_t elementSize)
@@ -13,6 +14,25 @@ VECTOR* vector_new(size_t elementSize)
     vector->_elementSize    = elementSize;
     vector->_arr            = malloc(0);
     vector->_length         = 0;
+
+    vector->_print          = NULL;
+
+    return vector;
+}
+
+VECTOR* vector_new_d(void* ptr, int howManyElements, size_t elementSize)
+{
+    // Really simplistic implementation
+
+    /*TODO
+     *  Make this function better lol
+     */
+    VECTOR* vector = vector_new(elementSize);
+
+    for (int i = 0; i < howManyElements; i++)
+    {
+        vector_push_back(vector, ptr);
+    }
 
     return vector;
 }
@@ -172,6 +192,13 @@ int     vector_insert(VECTOR* vector, void* ptr, int index)
     memmove(vector->_arr + (vector->_elementSize * index), ptr, vector->_elementSize);
 }
 
+int     vector_swap(VECTOR* vector1, VECTOR* vector2)
+{
+    char* temp_arr = vector1->_arr;
+    vector1->_arr = vector2->_arr;
+    vector2->_arr = temp_arr;
+}
+
 int     vector_clear(VECTOR* vector)
 {
     memset(vector->_arr, 0, (vector->_elementSize * vector->_length));
@@ -189,7 +216,15 @@ int     vector_free(VECTOR* vector)
     free(vector);
 }
 
-void    vector_print_contents(VECTOR* vector)
+void    vector_set_print_callback(VECTOR* vector, void (*print)())
 {
-    printf("\nThe contents of the vector are: %s\n", vector->_arr);
+    vector->_print = print;
+}
+
+void    vector_print(VECTOR* vector)
+{
+    if (vector->_print != NULL)
+    {
+        vector->_print(vector);
+    }
 }
