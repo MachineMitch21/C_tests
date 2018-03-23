@@ -12,53 +12,78 @@ typedef struct {
 
 int main(int argc, char** argv)
 {
-    VECTOR* integer_vector = vector_new(sizeof(int));
-    VECTOR* test_struct_vector = vector_new(sizeof(TestStruct));
+    VECTOR* test_vector = vector_new(sizeof(TestStruct));
 
-    int test_val = 123;
-    vector_push_back(integer_vector, &test_val);
+    TestStruct test_struct;
+    test_struct._double = 8.34;
+    test_struct._integer = 8732;
+    test_struct._string = "Example string for testing";
 
-    int test_val2 = 4321;
-    vector_push_back(integer_vector, &test_val2);
+    vector_push_back(test_vector, &test_struct);
 
-    int test_val3 = 743;
-    vector_push(integer_vector, &test_val3);
+    TestStruct test_struct1;
+    test_struct1._string = "Other example string for testing";
+    test_struct1._integer = 213;
+    test_struct1._double = 832.12;
 
-    vector_remove(integer_vector, 1);
+    vector_push_back(test_vector, &test_struct1);
 
-    int test_val4 = 8732;
-    vector_insert(integer_vector, &test_val4, 1);
+    TestStruct test_struct2;
+    test_struct2._string = "Third example string";
+    test_struct2._integer = 8;
+    test_struct2._double = 7.21;
 
-    int test_val5 = 9832;
-    vector_insert(integer_vector, &test_val5, 2);
+    vector_push(test_vector, &test_struct2);
 
-    TestStruct t_struct;
-    t_struct._double = 2.32;
-    t_struct._integer = 32;
-    t_struct._string = "Some String";
-    vector_push_back(test_struct_vector, &t_struct);
-
-    for (int i = 0; i < vector_size(integer_vector); i++)
+    for (int i = 0; i < vector_size(test_vector); i++)
     {
-        int val;
-        if (vector_get(integer_vector, &val, i) == VECTOR_OK)
-        {
-            printf("The value in the vector at index %d is %d\n", i, val);
-        }
+        TestStruct t_struct;
+        vector_get(test_vector, &t_struct, i);
+
+        printf("TestStruct: {%.2f, %d, %s}\n", t_struct._double, t_struct._integer, t_struct._string);
     }
 
-    for (int i = 0; i < vector_size(test_struct_vector); i++)
+    vector_remove(test_vector, 1);
+
+    printf("\nElement %d was removed\n\n", 1);
+
+    for (int i = 0; i < vector_size(test_vector); i++)
     {
-        TestStruct test;
-        if (vector_get(test_struct_vector, &test, i) == VECTOR_OK)
-        {
-            printf("Test struct double: %.2f\n", test._double);
-            printf("Test struct integer: %d\n", test._integer);
-            printf("Test struct string: %s\n", test._string);
-        }
+        TestStruct t_struct;
+        vector_get(test_vector, &t_struct, i);
+
+        printf("TestStruct: {%.2f, %d, %s}\n", t_struct._double, t_struct._integer, t_struct._string);
     }
 
-    vector_free(integer_vector);
-    vector_free(test_struct_vector);
+    TestStruct test_struct3;
+    test_struct3._string = "Fourth example string";
+    test_struct3._integer = 19;
+    test_struct3._double = 23.2;
+    vector_insert(test_vector, &test_struct3, 1);
+
+    printf("\nElement inserted at index {%d}\n\n", 1);
+
+    for (int i = 0; i < vector_size(test_vector); i++)
+    {
+        TestStruct t_struct;
+        vector_get(test_vector, &t_struct, i);
+
+        printf("TestStruct: {%.2f, %d, %s}\n", t_struct._double, t_struct._integer, t_struct._string);
+    }
+
+    vector_pop(test_vector);
+    vector_pop_back(test_vector);
+
+    printf("pop and pop_back called on test_vector\n");
+    printf("Attempting to print elements of test_vector if any remain..\n");
+
+    for (int i = 0; i < vector_size(test_vector); i++)
+    {
+        TestStruct t_struct;
+        vector_get(test_vector, &t_struct, i);
+
+        printf("TestStruct: {%.2f, %d, %s}\n", t_struct._double, t_struct._integer, t_struct._string);
+    }
+
     return 0;
 }

@@ -73,7 +73,7 @@ int     vector_push(VECTOR* vector,  void* ptr)
 
 int     vector_pop_back(VECTOR* vector)
 {
-    // Decrement length and reallocate the array to cut off the last element
+    memset(vector->_arr, 0, vector->_length - 1);
     vector->_length -= 1;
     vector->_arr = realloc(vector->_arr, vector->_elementSize * (vector->_length));
 
@@ -91,16 +91,16 @@ int     vector_pop(VECTOR* vector)
 {
     // Decrement length and allocate temporary array so we can edit the array without
     // screwing up vector->_arr
+
+    memset(vector->_arr, 0, vector->_elementSize);
+
+    for (int i = 0; i < vector->_length; i++)
+    {
+        memmove(vector->_arr + (vector->_elementSize * i), vector->_arr + (vector->_elementSize * (i + 1)), vector->_elementSize);
+    }
+
     vector->_length -= 1;
-    char* temp_arr = malloc(vector->_elementSize * (vector->_length));
-
-    memmove(temp_arr, vector->_arr + (vector->_elementSize * 1), vector->_length);
-
-    vector->_arr = realloc(vector->_arr, vector->_elementSize * (vector->_length));
-
-    memmove(vector->_arr, temp_arr, vector->_elementSize * vector->_length);
-
-    free(temp_arr);
+    vector->_arr = realloc(vector->_arr, vector->_elementSize * vector->_length);
 
     return VECTOR_OK;
 }
