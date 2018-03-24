@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdarg.h>
+#include <assert.h>
 #include <memory.h>
 
 typedef struct _VECTOR VECTOR;
@@ -30,6 +31,9 @@ int     vector_pop(VECTOR* vector);
 // Swap the elements in the two input vectors
 int     vector_swap(VECTOR* vector1, VECTOR* vector2);
 
+// Set the element at position (index)
+int     vector_set(VECTOR* vector, void* ptr, int index);
+
 // Retreives the element at (index) position in the VECTOR and stores it in (ptr)
 int     vector_get(VECTOR* vector, void* ptr, int index);
 
@@ -45,7 +49,14 @@ int     vector_insert(VECTOR* vector, void* ptr, int index);
 // Clears the contents of the VECTOR
 int     vector_clear(VECTOR* vector);
 
+// Compares the element at (index) to the memory at location pointed to by ptr
+int     vector_elemcmp(VECTOR* vector, void* ptr, int index);
+
 // Frees the memory taken up by the VECTOR
 int     vector_free(VECTOR* vector);
 
+// Calls the callback that was passed to vector_set_print_callback
+// The idea is to give programmers the power to access each element and
+// perform whatever casts are needed and print each element the way it would
+// need to be printed
 void    vector_print(VECTOR* vector);

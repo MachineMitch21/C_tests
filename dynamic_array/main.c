@@ -10,14 +10,41 @@ typedef struct {
     char*   _string;
 } TestStruct;
 
+typedef struct {
+    char*   _cstr;
+} String;
+
 void print_test_struct_vector(VECTOR* vector)
 {
-    for (int i = 0; i < vector_size(vector); i++)
+    size_t size = vector_size(vector);
+    for (int i = 0; i < size; i++)
     {
         TestStruct t_struct;
         vector_get(vector, &t_struct, i);
 
         printf("TestStruct: {%.2f, %d, %s}\n", t_struct._double, t_struct._integer, t_struct._string);
+    }
+}
+
+void print_int_vector(VECTOR* vector)
+{
+    size_t size = vector_size(vector);
+    for (int i = 0; i < size; i++)
+    {
+        int value;
+        vector_get(vector, &value, i);
+        printf("Integer at index {%d} is %d\n", i, value);
+    }
+}
+
+void print_str_vector(VECTOR* vector)
+{
+    size_t size = vector_size(vector);
+    for (int i = 0; i < size; i++)
+    {
+        String* str;
+        vector_get(vector, str, i);
+        printf("%s\n", str->_cstr);
     }
 }
 
@@ -89,21 +116,71 @@ void test_two()
     VECTOR* test_vector1 = vector_new_d(&test_struct, 7, sizeof(TestStruct));
     VECTOR* test_vector2 = vector_new(sizeof(TestStruct));
 
+    vector_set_print_callback(test_vector1, &print_test_struct_vector);
+    vector_set_print_callback(test_vector2, &print_test_struct_vector);
+
     test_struct._double = 128.23;
     test_struct._string = "Another string of characters";
     test_struct._integer = 823;
 
     vector_push_back(test_vector2, &test_struct);
 
+    printf("\nPrinting contents of test_vector1 before swapping elements with test_vector2\n");
     vector_print(test_vector1);
 
     vector_swap(test_vector1, test_vector2);
 
+    printf("\nPrinting contents of test_vector1 after swapping elements with test_vector2\n");
     vector_print(test_vector1);
+
+    vector_free(test_vector1);
+    vector_free(test_vector2);
+    printf("\n");
+}
+
+void test_three()
+{
+    int value = 231;
+    VECTOR* integer_vector = vector_new_d(&value, 100, sizeof(int));
+
+    vector_set_print_callback(integer_vector, &print_int_vector);
+
+    int new_value = 87231;
+    size_t size = vector_size(integer_vector);
+    for (int i = 0; i < size; i++)
+    {
+        if (i % 2)
+        {
+            vector_set(integer_vector, &new_value, i);
+        }
+    }
+
+    printf("Printing contents of integer_vector\n");
+    vector_print(integer_vector);
+
+    if (vector_elemcmp(integer_vector, &new_value, 1) == 0)
+    {
+        printf("\nThe element at index {%d} is equal to %d\n", 1, new_value);
+    }
+}
+
+void test_four()
+{
+    String str;
+    str._cstr = "Test string and what not";
+    VECTOR* string_vector = vector_new_d(&str, 100, sizeof(String));
+
+    vector_set_print_callback(string_vector, &print_str_vector);
+
+    printf("Printing contents of string_vector\n");
+    vector_print(string_vector);
 }
 
 int main(int argc, char** argv)
 {
     test_one();
+    test_two();
+    test_three();
+    test_four();
     return 0;
 }

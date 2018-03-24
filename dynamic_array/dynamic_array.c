@@ -11,11 +11,15 @@ struct _VECTOR {
 VECTOR* vector_new(size_t elementSize)
 {
     VECTOR* vector          = malloc(sizeof(VECTOR));
-    vector->_elementSize    = elementSize;
-    vector->_arr            = malloc(0);
-    vector->_length         = 0;
 
-    vector->_print          = NULL;
+    if (vector != NULL)
+    {
+        vector->_elementSize    = elementSize;
+        vector->_arr            = malloc(0);
+        vector->_length         = 0;
+
+        vector->_print          = NULL;
+    }
 
     return vector;
 }
@@ -29,9 +33,12 @@ VECTOR* vector_new_d(void* ptr, int howManyElements, size_t elementSize)
      */
     VECTOR* vector = vector_new(elementSize);
 
-    for (int i = 0; i < howManyElements; i++)
+    if (vector != NULL)
     {
-        vector_push_back(vector, ptr);
+        for (int i = 0; i < howManyElements; i++)
+        {
+            vector_push_back(vector, ptr);
+        }
     }
 
     return vector;
@@ -125,9 +132,21 @@ int     vector_pop(VECTOR* vector)
     return VECTOR_OK;
 }
 
+int     vector_set(VECTOR* vector, void* ptr, int index)
+{
+    if (index >= vector->_length || index < 0)
+    {
+        return VECTOR_INDEX_OUT_OF_RANGE;
+    }
+
+    memmove(&vector->_arr[index * vector->_elementSize], ptr, vector->_elementSize);
+
+    return VECTOR_OK;
+}
+
 int     vector_get(VECTOR* vector, void* ptr, int index)
 {
-    if (index >= vector->_length)
+    if (index >= vector->_length || index < 0)
     {
         return VECTOR_INDEX_OUT_OF_RANGE;
     }
@@ -173,7 +192,7 @@ int     vector_remove(VECTOR* vector, int index)
 
 int     vector_insert(VECTOR* vector, void* ptr, int index)
 {
-    if (index > vector->_length - 1 || index < 0)
+    if (index >= vector->_length || index < 0)
     {
         return VECTOR_INDEX_OUT_OF_RANGE;
     }
@@ -190,13 +209,30 @@ int     vector_insert(VECTOR* vector, void* ptr, int index)
     }
 
     memmove(vector->_arr + (vector->_elementSize * index), ptr, vector->_elementSize);
+
+    return VECTOR_OK;
 }
 
 int     vector_swap(VECTOR* vector1, VECTOR* vector2)
 {
+    assert(vector1 != NULL && vector2 != NULL);
+
+    // Store temporary variables equal to vector1's current members
+    // so we can set vector2's members after changing vector1
     char* temp_arr = vector1->_arr;
+    size_t temp_vec1_len = vector1->_length;
+    size_t temp_vec1_elementSize = vector1->_elementSize;
+
     vector1->_arr = vector2->_arr;
     vector2->_arr = temp_arr;
+
+    vector1->_length = vector2->_length;
+    vector2->_length = temp_vec1_len;
+
+    vector1->_elementSize = vector2->_elementSize;
+    vector2->_elementSize = temp_vec1_elementSize;
+
+    return VECTOR_OK;
 }
 
 int     vector_clear(VECTOR* vector)
@@ -208,12 +244,24 @@ int     vector_clear(VECTOR* vector)
     return VECTOR_OK;
 }
 
+int     vector_elemcmp(VECTOR* vector, void* ptr, int index)
+{
+    if (index >= vector->_length || index < 0)
+    {
+        return VECTOR_INDEX_OUT_OF_RANGE;
+    }
+
+    return memcmp(vector->_arr + (vector->_elementSize * index), ptr, vector->_elementSize);
+}
+
 int     vector_free(VECTOR* vector)
 {
     free(vector->_arr);
     vector->_length = 0;
     vector = NULL;
     free(vector);
+
+    return VECTOR_OK;
 }
 
 void    vector_set_print_callback(VECTOR* vector, void (*print)())
