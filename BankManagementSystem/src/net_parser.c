@@ -6,6 +6,8 @@
 #define ACTIONID_SIZE           1
 #define ACTIONSTR_SIZE          (DEFAULT_BUFFER_SIZE - ACTIONID_SIZE)
 
+#define MAX_IDS 14
+
 // MACROS defining actionID's
 #define CUSTOMER_LOGIN          0
 #define CREATE_CUSTOMER         1
@@ -41,6 +43,15 @@ struct _NetMessage {
     // Will hold the individual action strings
     List*       _actionStrsList;
 };
+
+struct _ActionIDManager {
+    Map* _actionIDMap;
+    Map* _functionMap;
+};
+
+typedef struct {
+    void (*net_func)(List*, ErrorStruct*);
+} NetFunc;
 
 void str_replace_c(char* str, char toReplace, char replacer)
 {
@@ -93,8 +104,6 @@ void net_login(List* actionStrsList, ErrorStruct* err_struct)
 
         err_struct->action_result = db_verify_login(uName, pWord, &err_struct->sql_stat);
     }
-
-    return err_struct;
 }
 
 void net_create_customer(List* actionStrsList, ErrorStruct* err_struct)
@@ -147,70 +156,139 @@ void net_delete_customer(List* actionStrsList, ErrorStruct* err_struct)
     free(id_str);
 }
 
-ErrorStruct pass_net_msg_to_db(NetMessage* net_msg)
+void net_create_account(List* actionStrsList, ErrorStruct* err_struct)
 {
-    assert(net_msg != NULL);
 
-    int actionID            = net_msg->_actionID;
-    List* actionStrsList    = net_msg->_actionStrsList;
+}
+
+void net_modify_account(List* actionStrsList, ErrorStruct* err_struct)
+{
+
+}
+
+void net_delete_account(List* actionStrsList, ErrorStruct* err_struct)
+{
+
+}
+
+void net_create_profile(List* actionStrsList, ErrorStruct* err_struct)
+{
+
+}
+
+void net_modify_profile(List* actionStrsList, ErrorStruct* err_struct)
+{
+
+}
+
+void net_delete_profile(List* actionStrsList, ErrorStruct* err_struct)
+{
+
+}
+
+void net_account_transfer(List* actionStrsList, ErrorStruct* err_struct)
+{
+
+}
+
+int keyequ(void* first_arg, void* second_arg)
+{
+    int* first  =   (int*) first_arg;
+    int* second =   (int*) second_arg;
+
+    return (*first - *second);
+}
+
+ActionIDManager* actionIDManager_construct()
+{
+    ActionIDManager* actionIDManager    = malloc(sizeof(ActionIDManager));
+    actionIDManager->_actionIDMap       = map_new(&keyequ);
+    actionIDManager->_functionMap       = map_new(&keyequ);
+
+    int i;
+    for (i = 0; i < MAX_IDS; i++)
+    {
+        map_push_back(actionIDManager->_actionIDMap, &i, &i);
+    }
+
+    int result = 0;
+
+    NetFunc netFunc1 = {net_login};
+    int customer_login = CUSTOMER_LOGIN;
+    map_push_back(actionIDManager->_functionMap, map_get_value(actionIDManager->_actionIDMap, &customer_login, &result)           , &netFunc1);
+
+    NetFunc netFunc2 = {net_create_customer};
+    int create_customer = CREATE_CUSTOMER;
+    map_push_back(actionIDManager->_functionMap, map_get_value(actionIDManager->_actionIDMap, &create_customer, &result)          , &netFunc2);
+
+    NetFunc netFunc3 = {net_modify_customer};
+    int modify_customer = MODIFY_CUSTOMER;
+    map_push_back(actionIDManager->_functionMap, map_get_value(actionIDManager->_actionIDMap, &modify_customer, &result)          , &netFunc3);
+
+    NetFunc netFunc4 = {net_delete_customer};
+    int delete_customer = DELETE_CUSTOMER;
+    map_push_back(actionIDManager->_functionMap, map_get_value(actionIDManager->_actionIDMap, &delete_customer, &result)          , &netFunc4);
+
+    NetFunc netFunc5 = {net_create_account};
+    int create_account = CREATE_ACCOUNT;
+    map_push_back(actionIDManager->_functionMap, map_get_value(actionIDManager->_actionIDMap, &create_account, &result)           , &netFunc5);
+
+    NetFunc netFunc6 = {net_modify_account};
+    int modify_account = MODIFY_ACCOUNT;
+    map_push_back(actionIDManager->_functionMap, map_get_value(actionIDManager->_actionIDMap, &modify_account, &result)           , &netFunc6);
+
+    NetFunc netFunc7 = {net_delete_account};
+    int delete_account = DELETE_ACCOUNT;
+    map_push_back(actionIDManager->_functionMap, map_get_value(actionIDManager->_actionIDMap, &delete_account, &result)           , &netFunc7);
+
+    NetFunc netFunc8 = {net_create_profile};
+    int customer_create_profile = CUSTOMER_CREATE_PROFILE;
+    map_push_back(actionIDManager->_functionMap, map_get_value(actionIDManager->_actionIDMap, &customer_create_profile, &result)  , &netFunc8);
+
+    NetFunc netFunc9 = {net_modify_profile};
+    int customer_modify_profile = CUSTOMER_MODIFY_PROFILE;
+    map_push_back(actionIDManager->_functionMap, map_get_value(actionIDManager->_actionIDMap, &customer_modify_profile, &result)  , &netFunc9);
+
+    NetFunc netFunc10 = {net_delete_profile};
+    int customer_delete_profile = CUSTOMER_DELETE_PROFILE;
+    map_push_back(actionIDManager->_functionMap, map_get_value(actionIDManager->_actionIDMap, &customer_delete_profile, &result)  , &netFunc10);
+
+    NetFunc netFunc11 = {net_account_transfer};
+    int account_transfer = ACCOUNT_TRANSFER;
+    map_push_back(actionIDManager->_functionMap, map_get_value(actionIDManager->_actionIDMap, &account_transfer, &result)         , &netFunc11);
+
+    return actionIDManager;
+}
+
+void actionIDManager_free(ActionIDManager* actionIDManager)
+{
+    map_free(actionIDManager->_actionIDMap);
+    map_free(actionIDManager->_functionMap);
+    free(actionIDManager);
+}
+
+ErrorStruct pass_net_msg_to_db(NetMessage* net_msg, ActionIDManager* actionIDManager)
+{
+    assert(net_msg != NULL && actionIDManager != NULL);
 
     ErrorStruct err_struct;
 
-    if (actionID == CUSTOMER_LOGIN)
-    {
-        net_login(actionStrsList, &err_struct);
-        return err_struct;
-    }
-    else if (actionID == CREATE_CUSTOMER)
-    {
-        net_create_customer(actionStrsList, &err_struct);
-        return err_struct;
-    }
-    else if (actionID == MODIFY_CUSTOMER)
-    {
-        net_modify_customer(actionStrsList, &err_struct);
-        return err_struct;
-    }
-    else if (actionID == DELETE_CUSTOMER)
-    {
-        net_delete_customer(actionStrsList, &err_struct);
-        return err_struct;
-    }
-    else if (actionID == CREATE_ACCOUNT)
-    {
+    int result = 0;
 
-        return err_struct;
-    }
-    else if (actionID == MODIFY_ACCOUNT)
-    {
+    print_netMsg(net_msg);
 
-        return err_struct;
-    }
-    else if (actionID == DELETE_ACCOUNT)
-    {
+    int current_id = *(int*) map_get_value(actionIDManager->_actionIDMap, &net_msg->_actionID, &result);
 
-        return err_struct;
-    }
-    else if (actionID == CUSTOMER_CREATE_PROFILE)
-    {
+    printf("Current ID is: %d\n", current_id);
 
-        return err_struct;
-    }
-    else if (actionID == CUSTOMER_MODIFY_PROFILE)
-    {
+    printf("Function map has {%d} elements\n", map_size(actionIDManager->_functionMap));
 
-        return err_struct;
-    }
-    else if (actionID == CUSTOMER_DELETE_PROFILE)
-    {
+    NetFunc* netFunc = (NetFunc*) map_get_value(actionIDManager->_functionMap, &current_id, &result);
 
-        return err_struct;
-    }
-    else if (actionID == ACCOUNT_TRANSFER)
-    {
+    printf("Getting ready to call net_func\n");
+    netFunc->net_func(net_msg->_actionStrsList, &err_struct);
 
-        return err_struct;
-    }
+    return err_struct;
 }
 
 NetMessage* parse_netMsg(char* msg)
@@ -244,6 +322,7 @@ NetMessage* parse_netMsg(char* msg)
     {
         Node* node = node_new(cur_actionStr_token, strlen(cur_actionStr_token));
         list_push_back(net_msg->_actionStrsList, node);
+
         cur_actionStr_token = strtok(NULL, DATA_PIECE_DELIMETER);
     }
 

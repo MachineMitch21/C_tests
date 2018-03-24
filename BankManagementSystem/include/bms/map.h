@@ -41,4 +41,8 @@ int     map_pop_back(Map* map);
 
 Pair*   map_peek_back(Map* map, int* rc);
 
+int     map_modify_value(Map* map, void* key, void* new_val);
+
+int     map_clear(Map* map);
+
 int     map_free(Map* map);

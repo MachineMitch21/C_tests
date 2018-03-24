@@ -27,11 +27,10 @@ Node* node_new(void* data, size_t size)
 
 Node* node_copy(Node* node)
 {
-    Node* copy_of_node = malloc(sizeof(Node));
+    void* data = node_data(node);
+    Node* copy = node_new(data, sizeof(data));
 
-    memmove(node, copy_of_node, sizeof(Node));
-
-    return copy_of_node;
+    return copy;
 }
 
 void* node_data(Node* node)

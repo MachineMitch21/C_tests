@@ -1,8 +1,13 @@
 
 #include <bms/map.h>
 
+typedef int (*equ_callback)(void* first, void* second);
+
 struct _Map {
-    List* _pairs;
+    List*           _pairs;
+
+    /* Callback function for checking key equality for this map struct */
+    equ_callback    keyequ;
 };
 
 struct _Pair {
@@ -35,10 +40,11 @@ void    pair_free(Pair* pair)
 }
 
 
-Map*    map_new()
+Map*    map_new(equ_callback keyequ)
 {
     Map* map    = malloc(sizeof(*map));
     map->_pairs = list_new();
+    map->keyequ = keyequ;
 
     return map;
 }
@@ -63,8 +69,9 @@ void*   map_get_value(Map* map, void* key, int* rc)
         {
             Pair* pair = (Pair*) node_data(node);
 
-            if (memcmp(pair->_key, key, sizeof(pair->_key)) == 0)
+            if (map->keyequ(pair->_key, key) == 0)
             {
+                *rc = list_last_error(temp_pairs);
                 return pair->_value;
             }
         }
@@ -112,7 +119,7 @@ int     map_remove(Map* map, void* key)
         {
             Pair* pair = (Pair*) node_data(node);
 
-            if (memcmp(pair->_key, pair->_value, sizeof(pair->_key)) == 0)
+            if (map->keyequ(pair->_key, key) == 0)
             {
                 list_remove_i(temp_pairs, i);
                 return LIST_OKAY;
@@ -125,12 +132,46 @@ int     map_remove(Map* map, void* key)
 
 List*  map_get_keys(Map* map, int* rc)
 {
+    List* keys_list = list_new();
 
+    List* temp_pairs = map->_pairs;
+
+    int size = list_size(temp_pairs);
+
+    int i;
+    for (i = 0; i < size; i++)
+    {
+        Node* node = list_get_element(temp_pairs, i);
+
+        if (node != NULL)
+        {
+            list_push(keys_list, node_copy(node));
+        }
+    }
+
+    return keys_list;
 }
 
 List*  map_get_values(Map* map, int* rc)
 {
+    List* vals_list = list_new();
 
+    List* temp_pairs = map->_pairs;
+
+    int size = list_size(temp_pairs);
+
+    int i;
+    for (i = 0; i < size; i++)
+    {
+        Node* node = list_get_element(temp_pairs, i);
+
+        if (node != NULL)
+        {
+            list_push(vals_list, node_copy(node));
+        }
+    }
+
+    return vals_list;
 }
 
 int     map_push(Map* map, void* key, void* value)
@@ -209,6 +250,41 @@ Pair*   map_peek_back(Map* map, int* rc)
 
     *rc = list_last_error(temp_pairs);
     return NULL;
+}
+
+int     map_modify_value(Map* map, void* key, void* new_val)
+{
+    List* temp_pairs = map->_pairs;
+
+    int size = list_size(temp_pairs);
+
+    int i;
+    for (i = 0; i < size; i++)
+    {
+        Node* node = list_get_element(temp_pairs, i);
+
+        if (node != NULL)
+        {
+            Pair* pair = (Pair*) node_data(node);
+
+            if (map->keyequ(pair->_key, key) == 0)
+            {
+                pair->_value = new_val;
+                return LIST_OKAY;
+            }
+        }
+    }
+
+    return NO_ELEMENT_FOUND;
+}
+
+int     map_clear(Map* map)
+{
+    List* temp_pairs = map->_pairs;
+
+    list_clear(temp_pairs);
+
+    return list_last_error(temp_pairs);
 }
 
 int     map_free(Map* map)

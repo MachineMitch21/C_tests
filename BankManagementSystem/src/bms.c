@@ -12,15 +12,7 @@ int main(int argc, char** argv)
 
     int rc;
 
-    Map* map = map_new();
-
-    map_push(map, "Hello", "Goodbye");
-
-    printf("Map size: %d\n", map_size(map));
-
-    printf("Value: %s\n", map_get_value(map, "Hello", &rc));
-
-    map_free(map);
+    ActionIDManager* actionIDManager = actionIDManager_construct();
 
     Server* server = server_init(DEFAULT_IP, DEFAULT_PORT, &status);
 
@@ -35,7 +27,7 @@ int main(int argc, char** argv)
             server_receive(client, &net_data, &status);
             NetMessage* net_msg = parse_netMsg(net_data.data);
 
-            pass_net_msg_to_db(net_msg);
+            pass_net_msg_to_db(net_msg, actionIDManager);
 
             cleanup_netMessage(net_msg);
 
@@ -52,5 +44,7 @@ int main(int argc, char** argv)
         printf("\nThe server has failed to initialize, Error Code {%d}\n", status);
         exit(-1);
     }
+
+    actionIDManager_free(actionIDManager);
     return 0;
 }

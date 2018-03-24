@@ -15,14 +15,20 @@ typedef struct {
 
 #include <bms/list.h>
 #include <bms/database_manager.h>
+#include <bms/map.h>
 #include <string.h>
 #include <stdlib.h>
 
-typedef struct _NetMessage NetMessage;
+typedef struct _NetMessage      NetMessage;
+typedef struct _ActionIDManager ActionIDManager;
+
+ActionIDManager* actionIDManager_construct();
+
+void        actionIDManager_free(ActionIDManager* actionIDManager);
 
 char**      convert_action_strs_list(List* actionStrsList);
 
-ErrorStruct pass_net_msg_to_db(NetMessage* net_msg);
+ErrorStruct pass_net_msg_to_db(NetMessage* net_msg, ActionIDManager* actionIDManager);
 
 NetMessage* parse_netMsg(char* msg);
 void        cleanup_netMessage(NetMessage* net_message);
