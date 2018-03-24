@@ -8,8 +8,8 @@ struct Server_s {
     #endif // _WIN32
 
     #ifdef __unix__
-        int                 socket_fd;
         struct sockaddr_in  addr_info;
+        int                 socket_fd;
     #endif // __unix__
 };
 
@@ -19,9 +19,9 @@ struct Client_s {
     #endif // _WIN32
 
     #ifdef __unix__
-        int                 socket_fd;
         struct sockaddr_in  addr_info;
-        int                 addr_len;
+        int                 socket_fd;
+        socklen_t           addr_len;
     #endif // __unix__
 };
 
@@ -57,26 +57,31 @@ Server* server_init(const char* ip, const char* port, int* status)
 
     #ifdef __unix__
 
-        if ( (server->socket_fd = socket(AF_INET, SOCK_STREAM, )) < 0)
+        if ( (server->socket_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
         {
-            fprintf(stderr, "Error creating socket\n")
+            fprintf(stderr, "Error creating socket: {%s}\n", strerror(errno));
             return NULL;
         }
 
         bzero(&server->addr_info, sizeof(server->addr_info));
-        server->addr_info->sin_family       = AF_INET;
-        server->addr_info->sin_port         = htons(DEFAULT_PORT);
-        server->addr_info->sin_addr.s_addr  = INADDR_ANY;
+        server->addr_info.sin_family       = AF_INET;
+        server->addr_info.sin_port         = htons(DEFAULT_PORT);
+        server->addr_info.sin_addr.s_addr  = INADDR_ANY;
 
-        if ( bind(server->socket_fd, (struct sockaddr_in*)&server->addr_info, sizeof(server->addr_info)) != 0)
+        *status = bind(server->socket_fd, (struct sockaddr*)&server->addr_info, sizeof(server->addr_info));
+
+        if (*status != 0)
         {
-            fprintf(stderr, "Error binding socket\n");
+
+            fprintf(stderr, "Error binding socket: {%s}\n", strerror(errno));
             return NULL;
         }
 
-        if (listen(server->socket_fd, 20) != 0)
+        *status = listen(server->socket_fd, 20);
+
+        if (*status != 0)
         {
-            fprintf(stderr, "Error initializing %d as listening socket\n", server->socket_fd);
+            fprintf(stderr, "Error initializing %d as listening socket: {%s}\n", server->socket_fd, strerror(errno));
             return NULL;
         }
 
@@ -163,7 +168,7 @@ Client* server_acceptConn(Server* server, int* status)
         #ifdef __unix__
 
             client->addr_len = sizeof(client->addr_info);
-            client->socket_fd = accept(client->socket_fd, (struct sockaddr*)&client->addr_info, client->addr_len)
+            client->socket_fd = accept(server->socket_fd, (struct sockaddr*)&client->addr_info, &client->addr_len);
 
             fprintf(stdout, "%s:%d connected\n", inet_ntoa(client->addr_info.sin_addr), ntohs(client->addr_info.sin_port));
 

@@ -70,7 +70,7 @@ int main(int argc, char** argv)
 		self.sin_addr.s_addr = INADDR_ANY;
 
 		/*---Assign a port number to the socket---*/
-	    if ( bind(sockfd, (struct sockaddr*)&self, sizeof(self)) != 0 )
+	  if ( bind(sockfd, (struct sockaddr*)&self, sizeof(self)) != 0 )
 		{
 			perror("socket--bind");
 			exit(errno);

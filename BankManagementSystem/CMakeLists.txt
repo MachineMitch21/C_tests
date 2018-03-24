@@ -12,4 +12,4 @@ link_directories(${CMAKE_SOURCE_DIR}/lib ${CMAKE_SOURCE_DIR}/build)
 
 find_library(${SQLITE_LIB} sqlite3 ${CMAKE_SOURCE_DIR}/build)
 
-target_link_libraries(${PROJECT_NAME} ${SQLITE_LIB})
+target_link_libraries(${PROJECT_NAME} ${SQLITE_LIB} pthread dl)
