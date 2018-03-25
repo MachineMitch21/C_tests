@@ -48,6 +48,17 @@ void print_str_vector(VECTOR* vector)
     }
 }
 
+void print_double_vector(VECTOR* vector)
+{
+    size_t size = vector_size(vector);
+    for (int i = 0; i < size; i++)
+    {
+        double val;
+        vector_get(vector, &val, i);
+        printf("Double at index {%d} is %.2f\n", i, val);
+    }
+}
+
 void test_one()
 {
     VECTOR* test_vector = vector_new(sizeof(TestStruct));
@@ -176,11 +187,23 @@ void test_four()
     vector_print(string_vector);
 }
 
+void test_five()
+{
+    double value = 23.21;
+    VECTOR* double_vector = vector_new_d(&value, 10000, sizeof(double));
+
+    vector_set_print_callback(double_vector, &print_double_vector);
+
+    printf("Printing contents of double_vector\n");
+    vector_print(double_vector);
+}
+
 int main(int argc, char** argv)
 {
     test_one();
     test_two();
     test_three();
     test_four();
+    test_five();
     return 0;
 }

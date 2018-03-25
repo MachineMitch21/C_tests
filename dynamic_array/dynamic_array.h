@@ -55,6 +55,9 @@ int     vector_elemcmp(VECTOR* vector, void* ptr, int index);
 // Frees the memory taken up by the VECTOR
 int     vector_free(VECTOR* vector);
 
+// Sets the print function callback
+void    vector_set_print_callback(VECTOR* vector, void (*print)(VECTOR* vector));
+
 // Calls the callback that was passed to vector_set_print_callback
 // The idea is to give programmers the power to access each element and
 // perform whatever casts are needed and print each element the way it would

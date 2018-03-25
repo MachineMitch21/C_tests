@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E remove -f CMakeFiles\c_containers.dir/objects.a
+C:\MinGW\bin\ar.exe cr CMakeFiles\c_containers.dir/objects.a @CMakeFiles\c_containers.dir\objects1.rsp
+C:\MinGW\bin\gcc.exe  -Wall -std=c99  -shared -o libc_containers.dll -Wl,--out-implib,libc_containers.dll.a -Wl,--major-image-version,0,--minor-image-version,0 -Wl,--whole-archive CMakeFiles\c_containers.dir/objects.a -Wl,--no-whole-archive @CMakeFiles\c_containers.dir\linklibs.rsp
