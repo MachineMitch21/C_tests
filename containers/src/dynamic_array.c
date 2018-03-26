@@ -254,6 +254,11 @@ int     vector_elemcmp(VECTOR* vector, void* ptr, int index)
     return memcmp(vector->_arr + (vector->_elementSize * index), ptr, vector->_elementSize);
 }
 
+size_t  vector_mem_size()
+{
+    return sizeof(VECTOR);
+}
+
 int     vector_free(VECTOR* vector)
 {
     free(vector->_arr);

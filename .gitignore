@@ -53,7 +53,8 @@ dkms.conf
 
 # Cmake build directory
 build/
-Build/
+build_mingw/
+build_nmake/
 
 # Electron && Node.js
 bms-client-linux-arm64/

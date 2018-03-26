@@ -1,13 +1,11 @@
 
 #include <map.h>
 
-typedef int (*equ_callback)(void* first, void* second);
-
 struct _Map {
     List*           _pairs;
 
     /* Callback function for checking key equality for this map struct */
-    equ_callback    keyequ;
+    cmp_callback    _keycmp;
 };
 
 struct _Pair {
@@ -40,21 +38,20 @@ void    pair_free(Pair* pair)
 }
 
 
-Map*    map_new(equ_callback keyequ)
+Map*    map_new()
 {
     Map* map    = malloc(sizeof(*map));
     map->_pairs = list_new();
-    map->keyequ = keyequ;
 
     return map;
 }
 
-int     map_size(Map* map)
+size_t  map_size(Map* map)
 {
     return list_size(map->_pairs);
 }
 
-void*   map_get_value(Map* map, void* key, int* rc)
+void*   map_get_value(Map* map, void* key)
 {
     List* temp_pairs = map->_pairs;
 
@@ -69,15 +66,13 @@ void*   map_get_value(Map* map, void* key, int* rc)
         {
             Pair* pair = (Pair*) node_data(node);
 
-            if (map->keyequ(pair->_key, key) == 0)
+            if (map->_keycmp(pair->_key, key) == 0)
             {
-                *rc = list_last_error(temp_pairs);
                 return pair->_value;
             }
         }
     }
 
-    *rc = NO_ELEMENT_FOUND;
     return NULL;
 }
 
@@ -119,7 +114,7 @@ int     map_remove(Map* map, void* key)
         {
             Pair* pair = (Pair*) node_data(node);
 
-            if (map->keyequ(pair->_key, key) == 0)
+            if (map->_keycmp(pair->_key, key) == 0)
             {
                 list_remove_i(temp_pairs, i);
                 return LIST_OKAY;
@@ -130,7 +125,7 @@ int     map_remove(Map* map, void* key)
     return NO_ELEMENT_FOUND;
 }
 
-List*  map_get_keys(Map* map, int* rc)
+List*  map_get_keys(Map* map)
 {
     List* keys_list = list_new();
 
@@ -152,7 +147,7 @@ List*  map_get_keys(Map* map, int* rc)
     return keys_list;
 }
 
-List*  map_get_values(Map* map, int* rc)
+List*  map_get_values(Map* map)
 {
     List* vals_list = list_new();
 
@@ -196,7 +191,7 @@ int     map_pop(Map* map)
     return list_last_error(temp_pairs);
 }
 
-Pair*   map_peek(Map* map, int* rc)
+Pair*   map_peek(Map* map)
 {
     List* temp_pairs = map->_pairs;
 
@@ -205,11 +200,9 @@ Pair*   map_peek(Map* map, int* rc)
     if (node != NULL)
     {
         Pair* pair = (Pair*) node_data(node);
-        *rc = LIST_OKAY;
         return pair;
     }
 
-    *rc = list_last_error(temp_pairs);
     return NULL;
 }
 
@@ -236,7 +229,7 @@ int     map_pop_back(Map* map)
     return list_last_error(temp_pairs);
 }
 
-Pair*   map_peek_back(Map* map, int* rc)
+Pair*   map_peek_back(Map* map)
 {
     List* temp_pairs = map->_pairs;
     Node* node = list_peek_back(temp_pairs);
@@ -244,16 +237,16 @@ Pair*   map_peek_back(Map* map, int* rc)
     if (node != NULL)
     {
         Pair* pair = (Pair*) node_data(node);
-        *rc = LIST_OKAY;
         return pair;
     }
 
-    *rc = list_last_error(temp_pairs);
     return NULL;
 }
 
 int     map_modify_value(Map* map, void* key, void* new_val)
 {
+    assert(map->_keycmp != NULL);
+
     List* temp_pairs = map->_pairs;
 
     int size = list_size(temp_pairs);
@@ -267,7 +260,7 @@ int     map_modify_value(Map* map, void* key, void* new_val)
         {
             Pair* pair = (Pair*) node_data(node);
 
-            if (map->keyequ(pair->_key, key) == 0)
+            if (map->_keycmp(pair->_key, key) == 0)
             {
                 pair->_value = new_val;
                 return LIST_OKAY;
@@ -285,6 +278,16 @@ int     map_clear(Map* map)
     list_clear(temp_pairs);
 
     return list_last_error(temp_pairs);
+}
+
+int     map_set_keycmp_callback(Map* map, cmp_callback keycmp)
+{
+    map->_keycmp = keycmp;
+}
+
+int     map_last_error(Map* map)
+{
+    return list_last_error(map->_pairs);
 }
 
 int     map_free(Map* map)

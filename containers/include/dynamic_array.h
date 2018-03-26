@@ -54,6 +54,9 @@ CCONTAINERS_API int     CCONTAINERS_CALL vector_clear(VECTOR* vector);
 // Compares the element at (index) to the memory at location pointed to by ptr
 CCONTAINERS_API int     CCONTAINERS_CALL vector_elemcmp(VECTOR* vector, void* ptr, int index);
 
+// Returns sizeof(VECTOR)
+CCONTAINERS_API size_t  CCONTAINERS_CALL vector_mem_size();
+
 // Frees the memory taken up by the VECTOR
 CCONTAINERS_API int     CCONTAINERS_CALL vector_free(VECTOR* vector);
 
